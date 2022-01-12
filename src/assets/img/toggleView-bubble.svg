@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="105px" height="29px" viewBox="0 0 105 29" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group Copy 5</title>
+    <g id="Data-Tool" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1-level-copy-4" transform="translate(-494.000000, -8050.000000)">
+            <g id="Group-4" transform="translate(381.000000, 8047.000000)">
+                <g id="Group-Copy-5" transform="translate(113.000000, 3.000000)">
+                    <rect id="Rectangle-Copy-8" stroke="#FFFFFF" stroke-width="2" fill="#FFFFFF" x="1" y="1" width="51" height="27"></rect>
+                    <path d="M10.3733407,15 C10.3733407,13.1283811 11.8510702,11.61114 13.6739491,11.61114 C15.496828,11.61114 16.9745575,13.1283811 16.9745575,15 C16.9745575,16.8716189 15.496828,18.38886 13.6739491,18.38886 C11.8510702,18.38886 10.3733407,16.8716189 10.3733407,15 Z" id="Fill-21" fill="#000000"></path>
+                    <path d="M20.7466814,15 C20.7466814,12.5936328 22.6466194,10.6428943 24.9903208,10.6428943 C27.3340222,10.6428943 29.2339602,12.5936328 29.2339602,15 C29.2339602,17.4063672 27.3340222,19.3571057 24.9903208,19.3571057 C22.6466194,19.3571057 20.7466814,17.4063672 20.7466814,15 Z" id="Fill-21-Copy" fill="#000000"></path>
+                    <path d="M32.0630531,14.5158771 C32.0630531,11.3073875 34.5963037,8.70640292 37.7212389,8.70640292 C40.8461741,8.70640292 43.3794248,11.3073875 43.3794248,14.5158771 C43.3794248,17.7243668 40.8461741,20.3253514 37.7212389,20.3253514 C34.5963037,20.3253514 32.0630531,17.7243668 32.0630531,14.5158771 Z" id="Fill-21-Copy-2" fill="#000000"></path>
+                    <rect id="Rectangle-Copy-9" stroke="#FFFFFF" stroke-width="2" x="53" y="1" width="51" height="27"></rect>
+                    <g id="Group-2" transform="translate(65.000000, 6.000000)" fill="#FFFFFF">
+                        <rect id="Rectangle" x="0" y="0" width="7.29824561" height="7.2"></rect>
+                        <rect id="Rectangle-Copy-2" x="0" y="9.8" width="7.29824561" height="7.2"></rect>
+                        <rect id="Rectangle-Copy" x="9.92007797" y="0" width="7.29824561" height="7.2"></rect>
+                        <rect id="Rectangle-Copy-4" x="19.8401559" y="0" width="7.29824561" height="7.2"></rect>
+                        <rect id="Rectangle-Copy-3" x="9.92007797" y="9.8" width="7.29824561" height="7.2"></rect>
+                        <rect id="Rectangle-Copy-5" x="19.8401559" y="9.8" width="7.29824561" height="7.2"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

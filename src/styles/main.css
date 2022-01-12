@@ -1,0 +1,398 @@
+body {
+  margin: 0;
+  font-family: "neue-haas-grotesk-text", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: neue-haas-grotesk-display;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 4.5em;
+}
+
+p {
+  font-family: neue-haas-grotesk-text;
+  font-weight: 400;
+  font-size: 1em;
+  line-height: 1.4em;
+  color: #fff;
+  /* font-size: 18px;
+    line-height: 26px; */
+}
+
+.font-display-reg {
+  font-family: "neue-haas-grotesk-display", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.font-display-bold {
+  font-family: "neue-haas-grotesk-display", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.font-text-reg {
+  font-family: "neue-haas-grotesk-text", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.font-text-bold {
+  font-family: "neue-haas-grotesk-text", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.black {
+  color: #000;
+}
+
+.white {
+  color: #fff;
+}
+
+.emerald {
+  color: #00D885;
+}
+
+.yolk {
+  color: #FF9B00;
+}
+
+.ultraLight {
+  color: #695CFF;
+}
+
+.pink {
+  color: #E7045E;
+}
+
+.charcoal {
+  color: #121212;
+}
+
+.gray {
+  color: #999999;
+}
+
+.bg-black {
+  background-color: #000;
+}
+
+.bg-white {
+  background-color: #fff;
+}
+
+.bg-emarald {
+  background-color: #00D885;
+}
+
+.bg-yolk {
+  background-color: #FF9B00;
+}
+
+.bg-ultraLight {
+  background-color: #695CFF;
+}
+
+.bg-pink {
+  background-color: #E7045E;
+}
+
+.bg-charcoal {
+  background-color: #121212;
+}
+
+.bg-gray {
+  background-color: #999999;
+}
+
+.tac {
+  text-align: center;
+}
+
+.tal {
+  text-align: left;
+}
+
+.tar {
+  text-align: right;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.hide {
+  display: none;
+}
+
+.block {
+  display: block;
+}
+
+.flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.flex-v-center {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.supply-chain-interactive-conainer {
+  max-width: 1170px;
+  margin: 0 auto;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.header-container {
+  margin: 0 auto;
+  max-width: 880px;
+  padding: 50px;
+}
+
+.header-container h1 {
+  padding-top: 45px;
+}
+
+.introText-box {
+  padding-top: 30px;
+  width: 500px;
+  margin: 0 auto;
+}
+
+.ultra-light-sqaure-box {
+  border: #695CFF solid 3px;
+  width: 30px;
+  height: 30px;
+  padding: 6px 3px 0 3px;
+  margin-right: 20px;
+  -ms-flex-preferred-size: 30px;
+      flex-basis: 30px;
+  -webkit-box-flex: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}
+
+.ultra-light-text-box {
+  border: #695CFF solid 3px;
+  padding: 15px 20px;
+  max-width: 450px;
+}
+
+.scroll-board {
+  height: 100vh;
+  margin: 0 auto;
+  padding: 50px 20px;
+  top: 0;
+  right: 0;
+  position: -webkit-sticky;
+  position: sticky;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.scroll-el {
+  margin: 40vh auto 80vh auto;
+  max-width: 29rem;
+  position: relative;
+  top: 0;
+  left: 0;
+  background: #000;
+  border: 3px solid #695CFF;
+  padding: 10px 20px;
+}
+
+.scroll-el__text {
+  color: #fff;
+  background: #000;
+}
+
+.scroll-el-filter {
+  max-width: 450px;
+  margin: 95vh auto 0 auto;
+}
+
+.animation-el {
+  position: relative;
+  top: 10px;
+  left: 10px;
+}
+
+.tool-wrapper {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+  font-size: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.tool-wrapper__sidebar {
+  width: 25%;
+}
+
+.tool-wrapper__sidebar--header {
+  height: 70px;
+  padding: 1em 0;
+}
+
+.tool-wrapper__sidebar--header .toggle-btn {
+  color: #fff;
+  margin-left: 30px;
+}
+
+.tool-wrapper__sidebar--label {
+  margin-bottom: -5px;
+  padding-top: 15px;
+}
+
+.tool-wrapper__sidebar--line {
+  border-bottom: solid #fff 0.5px;
+  padding: 5px;
+  margin-bottom: 20px;
+}
+
+.tool-wrapper__tool {
+  width: 75%;
+  margin-left: 5%;
+}
+
+.tool-wrapper__tool--header {
+  height: 70px;
+  text-align: center;
+}
+
+.tool-wrapper__tool--container {
+  height: 90vh;
+  text-align: center;
+}
+
+.tool-wrapper .legend-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.tool-wrapper .legend-box__circle {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+.tool-wrapper .legend-box__circle--solid {
+  border: #fff solid 1px;
+  background-color: #fff;
+}
+
+.tool-wrapper .legend-box__circle--dotted {
+  border: #fff dotted 1px;
+}
+
+.tool-wrapper .legend-box__square {
+  width: 12px;
+  height: 12px;
+  margin-right: 12px;
+}
+
+.tool-wrapper .legend-box__square--cold {
+  background-color: #695CFF;
+}
+
+.tool-wrapper .legend-box__square--hot {
+  background-color: #E7045E;
+}
+
+.tool-wrapper .legend-box__text {
+  font-size: 0.8em;
+  color: #fff;
+}
+
+.tooltip {
+  position: fixed;
+  top: 50px;
+  left: 50px;
+  visibility: hidden;
+  z-index: 999;
+  padding: 15px;
+  background-color: #121212;
+  opacity: 0.9;
+  max-width: 200px;
+  font-size: 1em;
+}
+
+.cta-btn {
+  border: #695CFF 3px solid;
+  padding: 10px 20px;
+}
+
+.cta-btn:hover {
+  background: #695CFF;
+  -webkit-transition: background 0.5s;
+  transition: background 0.5s;
+}
+
+.cta-btn__arrow {
+  margin-left: 12px;
+  margin-top: 5px;
+}
+
+.industry-filter {
+  width: 100%;
+  position: relative;
+}
+
+.industry-filter__arrow {
+  position: absolute;
+  right: 10px;
+  top: 7px;
+}
+
+.industry-filter__label {
+  padding-bottom: 12px;
+  border-bottom: solid #695CFF 2px;
+}
+
+.industry-filter__ul {
+  position: absolute;
+  min-width: 350px;
+  left: 0;
+  z-index: 999;
+  padding-left: 0;
+  background: #121212;
+  list-style: none;
+}
+
+.industry-filter__ul--list {
+  padding: 10px 20px;
+}
+
+.industry-filter__ul--list:hover, .industry-filter__ul .selected {
+  background-color: #695CFF;
+  color: #fff;
+}
+/*# sourceMappingURL=main.css.map */

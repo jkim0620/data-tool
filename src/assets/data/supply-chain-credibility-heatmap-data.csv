@@ -1,0 +1,85 @@
+﻿industry,step,bubble_size,hits
+All Industry Average,Plan,0.03,3.8B
+All Industry Average,Source,0.06,3.8B
+All Industry Average,Make,0.2,3.8B
+All Industry Average,Move,0.09,3.8B
+All Industry Average,Sell,0.04,3.8B
+All Industry Average,Use,0.41,3.8B
+All Industry Average,Regenerate,0.17,3.8B
+Athletic Apparel,Plan,0.02,419M
+Athletic Apparel,Source,0.05,419M
+Athletic Apparel,Make,0.15,419M
+Athletic Apparel,Move,0.09,419M
+Athletic Apparel,Sell,0.02,419M
+Athletic Apparel,Use,0.45,419M
+Athletic Apparel,Regenerate,0.21,419M
+Automotive,Plan,0.05,58M
+Automotive,Source,0.08,58M
+Automotive,Make,0.24,58M
+Automotive,Move,0.28,58M
+Automotive,Sell,0.06,58M
+Automotive,Use,0.14,58M
+Automotive,Regenerate,0.15,58M
+Beauty,Plan,0.01,31M
+Beauty,Source,0.04,31M
+Beauty,Make,0.19,31M
+Beauty,Move,0.1,31M
+Beauty,Sell,0.03,31M
+Beauty,Use,0.51,31M
+Beauty,Regenerate,0.12,31M
+Chemicals & Materials,Plan,0.04,80M
+Chemicals & Materials,Source,0.04,80M
+Chemicals & Materials,Make,0.29,80M
+Chemicals & Materials,Move,0.07,80M
+Chemicals & Materials,Sell,0.04,80M
+Chemicals & Materials,Use,0.29,80M
+Chemicals & Materials,Regenerate,0.22,80M
+Consumer Packaged Goods,Plan,0.02,24M
+Consumer Packaged Goods,Source,0.06,24M
+Consumer Packaged Goods,Make,0.32,24M
+Consumer Packaged Goods,Move,0.14,24M
+Consumer Packaged Goods,Sell,0.08,24M
+Consumer Packaged Goods,Use,0.23,24M
+Consumer Packaged Goods,Regenerate,0.15,24M
+Food & Beverage,Plan,0.04,185M
+Food & Beverage,Source,0.16,185M
+Food & Beverage,Make,0.21,185M
+Food & Beverage,Move,0.21,185M
+Food & Beverage,Sell,0.03,185M
+Food & Beverage,Use,0.18,185M
+Food & Beverage,Regenerate,0.17,185M
+Health & Pharma,Plan,0.02,96M
+Health & Pharma,Source,0.04,96M
+Health & Pharma,Make,0.34,96M
+Health & Pharma,Move,0.09,96M
+Health & Pharma,Sell,0.06,96M
+Health & Pharma,Use,0.33,96M
+Health & Pharma,Regenerate,0.11,96M
+Industrial Equipment,Plan,0.05,231M
+Industrial Equipment,Source,0.12,231M
+Industrial Equipment,Make,0.23,231M
+Industrial Equipment,Move,0.13,231M
+Industrial Equipment,Sell,0.07,231M
+Industrial Equipment,Use,0.19,231M
+Industrial Equipment,Regenerate,0.22,231M
+Multinationals,Plan,0.03,101M
+Multinationals,Source,0.06,101M
+Multinationals,Make,0.33,101M
+Multinationals,Move,0.1,101M
+Multinationals,Sell,0.06,101M
+Multinationals,Use,0.25,101M
+Multinationals,Regenerate,0.16,101M
+Retail & Grocery,Plan,0.03,1.1B
+Retail & Grocery,Source,0.06,1.1B
+Retail & Grocery,Make,0.17,1.1B
+Retail & Grocery,Move,0.08,1.1B
+Retail & Grocery,Sell,0.04,1.1B
+Retail & Grocery,Use,0.44,1.1B
+Retail & Grocery,Regenerate,0.19,1.1B
+Technology,Plan,0.03,1.4B
+Technology,Source,0.04,1.4B
+Technology,Make,0.21,1.4B
+Technology,Move,0.07,1.4B
+Technology,Sell,0.04,1.4B
+Technology,Use,0.46,1.4B
+Technology,Regenerate,0.15,1.4B
