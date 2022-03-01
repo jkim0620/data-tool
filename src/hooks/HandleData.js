@@ -2,7 +2,6 @@ import {useState, useEffect,} from 'react';
 import * as d3 from 'd3';
 import bubbleData from '../assets/data/supply-chain-credibility-bubble-data.csv';
 import heatmapData from '../assets/data/supply-chain-credibility-heatmap-data.csv';
-import { filter } from 'd3';
 
 const HandleData = () => {
     const [selectedView, setSelectedView] = useState('bubble'),
@@ -13,6 +12,20 @@ const HandleData = () => {
 
     const [bubbleDataStorage, setBubbleDataStorage] = useState([]),
           [heatmapDataStorage, setHeatmapDataStorage] = useState([]);    
+
+    const [deviceType, setDeviceType] = useState("");
+
+    useEffect(() => {
+        if (
+        /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|Windows Phone/i.test(
+            navigator.userAgent
+        )
+        ) {
+        setDeviceType("Mobile");
+        } else {
+        setDeviceType("Desktop");
+        }
+    }, []);
 
     useEffect(() => {
         d3.csv(bubbleData)
@@ -39,7 +52,6 @@ const HandleData = () => {
                     return d.industry;
                 });                
                 let filterIndustry = Array.from(new Set(industryArr));
-                // filterIndustry.splice(0, 1)
                 setFilterList(filterIndustry);
             })    
         
@@ -69,7 +81,7 @@ const HandleData = () => {
 
     const handleViewSelect = (val) => {
         setSelectedView(val);
-    }
+    }    
 
     return { selectedIndustry, 
              handleIndustrySelect, 
@@ -79,6 +91,7 @@ const HandleData = () => {
              getData, 
              allData, 
              industryData,
+             deviceType,
             };
 }
 

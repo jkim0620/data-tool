@@ -6,6 +6,7 @@ $ultraLight: #695CFF;
 $pink: #E7045E;
 $charcoal: #121212;
 $gray: #999999;
+$midnight: #1e1d3c;
 
 $neueHaasGroteskDisplay: 'neue-haas-grotesk-display';
 $neueHaasGroteskText: 'neue-haas-grotesk-text';
@@ -29,12 +30,18 @@ h1 { font-size: 4.5em; }
 p {
     font-family: neue-haas-grotesk-text;
     font-weight: 400;
-    font-size: 1em;
+    font-size: 16px;
     line-height: 1.4em;
     color: $white;
-    /* font-size: 18px;
-    line-height: 26px; */
   }
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
 
 .font-display-reg {
     font-family: $neueHaasGroteskDisplay, sans-serif;
@@ -89,6 +96,4 @@ p {
 .hide { display: none; }
 .block { display: block; }
 .flex { display: flex; }
-.flex-v-center { 
-    align-items: center; 
-}
+.flex-v-center { align-items: center; }
