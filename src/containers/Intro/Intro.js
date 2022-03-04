@@ -1,8 +1,11 @@
 import React from 'react';
 import Z100Logo from '../../assets/img/Z100-full-white_logo-01.svg';
 import scrollDownIcon from '../../assets/img/scroll-down-arrow.svg';
+import HandleData from '../../hooks/HandleData';
 
 const Intro = () => {
+    const { deviceType } = HandleData();
+
     return (
         <div style={{display: 'flex', alignItems: 'center', height: '100vh'}}>
             <div className="header-container">
@@ -14,8 +17,8 @@ const Intro = () => {
                         <h1 className="white intro-wrapper__titlebox--title">Measuring Supply Chain Credibility</h1>
                     </div>
                     <div className="intro-wrapper__textbox introText-box">
-                        <p>To help our members better explore the data featured in our flagship report, <a className="ultraLight font-text-bold" target="_blank" href="https://zero100.com/index/">The Zero100 Gambit: Opening Moves to Capture Supply Chain Credibility</a>, we've developed a visualization tool that allows you to explore top-line data <br />by industry.</p>
-                        <p>This self-guided tool provides accompanying commentary <br />to highlight:</p>
+                        <p>To help our members better explore the data featured in our flagship report, <a className="ultraLight font-text-bold" target="_blank" href="https://zero100.com/index/">The Zero100 Gambit: Opening Moves to Capture Supply Chain Credibility</a>, we've developed a visualization tool that allows you to explore top-line data {deviceType === 'Desktop' && <br />}by industry.</p>
+                        <p>This self-guided tool provides accompanying commentary {deviceType === 'Desktop' && <br />}to highlight:</p>
 
                         <div className="flex flex-v-center">
                             <div className="ultra-light-sqaure-box tac font-text-bold">1</div>

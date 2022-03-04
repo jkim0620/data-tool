@@ -317,12 +317,12 @@ const ToolLogic = () => {
             allData.forEach(el => {
                 if (el.step === thisData.step)  allAvgScore = el.bubble_size * 100;                
             });
-            scoreDifference = Math.round((thisData.bubble_size * 100) - allAvgScore);
+            scoreDifference = thisData.bubble_size * 100 > allAvgScore ?  Math.round((thisData.bubble_size * 100) - allAvgScore) : Math.round(allAvgScore - (thisData.bubble_size * 100));
 
             setTooltipDesc({
                 step: thisData.step, 
-                difference: scoreDifference === 0 ? 'the same' : scoreDifference > 0 ? `+${scoreDifference}% more` : `${scoreDifference}% less`,
-                industry: `${thisData.industry}`,
+                difference: scoreDifference === 0 ? 'the same' : thisData.bubble_size * 100 > allAvgScore ? `${scoreDifference}% more` : `${scoreDifference}% less`,
+                industry: thisData.industry === 'Chemicals & Materials' ? 'Chemical & Mateiral' : thisData.industry === 'Consumer Packaged Goods' ? 'CPG' : thisData.industry === 'Multinationals' ? 'Multinational' : `${thisData.industry}`,
                 desc: descByStep[`${thisData.step}`],
                 stepColor: thisData.step === 'Sell' || thisData.step === 'Use' || thisData.step === 'Regenerate' ? 'emerald' : 'yolk',
             })

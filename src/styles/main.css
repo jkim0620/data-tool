@@ -171,7 +171,7 @@ a:hover {
     -webkit-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
     background-color: #000;
-    z-index: 999999;
+    z-index: 99999999;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -290,8 +290,9 @@ a:hover {
 }
 
 .scroll-el {
+  -webkit-transform: translate3d(0, 0, 0);
   margin: 0 auto 80vh auto;
-  z-index: 99999;
+  z-index: 9999999;
   max-width: 29rem;
   position: relative;
   top: 0;
@@ -685,9 +686,6 @@ a:hover {
 }
 
 @media only screen and (max-width: 950px) and (max-height: 450px) {
-  p {
-    font-size: 13px;
-  }
   .header-container {
     padding: 0px 30px;
   }
@@ -743,15 +741,6 @@ a:hover {
     left: 50%;
     -webkit-transform: translate(-50%, 0%);
             transform: translate(-50%, 0%);
-  }
-  .tool-wrapper__sidebar--label {
-    font-size: 13px;
-  }
-  .tool-wrapper__sidebar--desc p {
-    font-size: 13px;
-  }
-  .cta-box-mobile p {
-    font-size: 13px;
   }
 }
 /*# sourceMappingURL=main.css.map */

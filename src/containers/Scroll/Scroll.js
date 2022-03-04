@@ -37,6 +37,7 @@ import PeachCircle from '../../assets/img/supply-chain-credibility-design_md-cir
 import PinkCircle from '../../assets/img/supply-chain-credibility-design_md-circle-pink.svg'; 
 import OrangeCircle from '../../assets/img/supply-chain-credibility-design_sm-circle-orange.svg'; 
 import PurpleCircle from '../../assets/img/supply-chain-credibility-design_sm-circle-purple.svg'; 
+import { delay } from 'lodash';
 
 const Scroll = () => {
     const {selectedIndustry, 
@@ -44,7 +45,8 @@ const Scroll = () => {
            selectedView, 
            handleViewSelect,
            industryData,
-           allData} = HandleData();
+           allData,
+           deviceType} = HandleData();
 
     const { onStepEnter, 
             mapSteps,
@@ -64,12 +66,13 @@ const Scroll = () => {
     }, [])
 
     useEffect(() => {
-        toolRef.current.scrollIntoView({behavior:'smooth'})   
-
-        if (selectedIndustry !== 'Select an Industry' && !hideIntro) {
+        deviceType === 'Desktop' ? toolRef.current.scrollIntoView({behavior:'smooth'}) : toolRef.current.scrollIntoView();   
+        
+        // const delayTime = deviceType === 'Desktop' ? 1000 : 0;
+        if (selectedIndustry !== 'Select an Industry' && !hideIntro && deviceType === 'Desktop') {
             setTimeout(() => {
                 setHideIntro(true);
-            }, 500)            
+            }, 1000)            
         }
     }, [selectedIndustry])
         
