@@ -96,8 +96,6 @@ const Tool = () => {
 
                 <div ref={tooltipBubbleRef} className="tooltip-bubble">
                     {deviceType === 'Mobile' && <div className="white closeBtn" style={{position: 'absolute', right: '10px', top: '5px' }}><img style={{width: '13px',}} src={CloseBtn} /></div>}
-                    {/* <div className={`tac font-text-bold ${tooltipDesc.stepColor}`} style={{marginBottom: '5px'}}>{tooltipDesc.step}</div>
-                    <p>{tooltipDesc.desc}</p> */}
                     <p className=""><span className={`font-text-bold ultraLight`}>{tooltipDesc.industry}</span> brands in this function produce <span className={`font-text-bold ultraLight`}>{tooltipDesc.difference}</span> qualifying hits vs. the all industry average.</p>                                               
                 </div>
 

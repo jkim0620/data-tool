@@ -322,7 +322,7 @@ const ToolLogic = () => {
             setTooltipDesc({
                 step: thisData.step, 
                 difference: scoreDifference === 0 ? 'the same' : thisData.bubble_size * 100 > allAvgScore ? `${scoreDifference}% more` : `${scoreDifference}% less`,
-                industry: thisData.industry === 'Chemicals & Materials' ? 'Chemical & Mateiral' : thisData.industry === 'Consumer Packaged Goods' ? 'CPG' : thisData.industry === 'Multinationals' ? 'Multinational' : `${thisData.industry}`,
+                industry: thisData.industry === 'Chemicals & Materials' ? 'Chemical & Material' : thisData.industry === 'Consumer Packaged Goods' ? 'CPG' : thisData.industry === 'Multinationals' ? 'Multinational' : `${thisData.industry}`,
                 desc: descByStep[`${thisData.step}`],
                 stepColor: thisData.step === 'Sell' || thisData.step === 'Use' || thisData.step === 'Regenerate' ? 'emerald' : 'yolk',
             })

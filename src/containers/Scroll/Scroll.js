@@ -52,6 +52,7 @@ const Scroll = () => {
             mapSteps,
             animateSvg,
             positionSvg,
+            filterRef,
           } = ScrollLogic();    
 
     const toolRef = useRef(),
@@ -61,8 +62,7 @@ const Scroll = () => {
     const [ hideIntro, setHideIntro ] = useState(false);      
     
     useEffect(() => {
-        positionSvg(svgRef, allData);
-        
+        positionSvg(svgRef, allData);        
     }, [])
 
     useEffect(() => {
@@ -73,8 +73,14 @@ const Scroll = () => {
             setTimeout(() => {
                 setHideIntro(true);
             }, 1000)            
+        } else if (selectedIndustry !== 'Select an Industry' && !hideIntro && deviceType === 'Mobile') {
+            filterRef.current.className = 'hide';
         }
     }, [selectedIndustry])
+
+    useEffect(() => {
+        deviceType === 'Desktop' ? toolRef.current.scrollIntoView({behavior:'smooth'}) : toolRef.current.scrollIntoView();   
+    }, [selectedView])
         
     window.addEventListener('scroll', throttle(() => {animateSvg(svgRef, window.scrollY, allData)}, 16), false);
     window.addEventListener('resize', () => { positionSvg(svgRef, allData); } )

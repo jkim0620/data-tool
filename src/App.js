@@ -11,27 +11,13 @@ function App() {
   	return (
 		
 		<div className="bg-black">
-			{deviceType === 'Desktop' ?
-			<React.Fragment>
-				<div className="alert-modal">
-					<div className="white font-tex-bold" style={{fontSize: '55px'}}><img style={{width: '150px'}} src={FlipIcon} /></div>
-				</div>
-				<div className="supply-chain-interactive-container">			
-					<Intro />
-					<Scroll />
-				</div>
-			</React.Fragment>
-			:
-			<div className="flex flex-v-center" style={{background: '#000', minHeight: '100vh', width: '100%', color: '#fff',}}>
-				<div style={{margin: '0 auto'}}>
-					<div className="tac" syle={{width: '100%'}}>
-						<img style={{width: '50px', margin: '0 auto'}} src={AlertIcon} />
-					</div>
-					<p>Please view on desktop to access this tool</p>
-				</div>
+			<div className="alert-modal">
+				<div className="white font-tex-bold" style={{fontSize: '55px'}}><img style={{width: '150px'}} src={FlipIcon} /></div>
 			</div>
-			}
-			
+			<div className="supply-chain-interactive-container">			
+				<Intro />
+				<Scroll />
+			</div>				
 		</div>
 				
   	);

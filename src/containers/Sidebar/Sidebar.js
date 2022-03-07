@@ -79,13 +79,19 @@ const Sidebar = () => {
                 <div className="sidebar-mobile__header">
                     <div className="hide" ref={toggleMobileRef} style={{justifyContent: 'end'}}>
                         <div className="font-text-bold white" style={{ paddingTop: '3px', marginRight: '20px' }}>Toggle View</div>
-                        <div className="toggle-btn pointer" onClick={() => { handleViewSelect(`${selectedView === 'bubble' ? 'heatmap' : 'bubble'}`); !hideHeatmapIntro && handleToggleBtnClick(); }}>
+                        <div className="toggle-btn pointer">
                             <img 
+                                onClick={() => { selectedView !== 'bubble' && handleViewSelect('bubble') }}
                                 style={{width: '50px'}} 
                                 src={`${selectedView === 'bubble' ? ActiveBubbleBtn : InactiveBubbleBtn}`} 
+                                onMouseOver={e => (e.currentTarget.src = ActiveBubbleBtn )} 
+                                onMouseOut={e => (e.currentTarget.src = `${selectedView === 'bubble' ? ActiveBubbleBtn : InactiveBubbleBtn}` )} 
                             />
                             <img 
+                                onClick={() => { selectedView !== 'heatmap' && handleViewSelect('heatmap'); !hideHeatmapIntro && selectedView !== 'heatmap' && handleToggleBtnClick(); }}
                                 style={{width: '50px'}} 
+                                onMouseOver={e => (e.currentTarget.src = ActiveHeatmapBtn )} 
+                                onMouseOut={e => (e.currentTarget.src = `${selectedView === 'heatmap' ? ActiveHeatmapBtn : InactiveHeatmapBtn}` )} 
                                 src={`${selectedView === 'bubble' ? InactiveHeatmapBtn : ActiveHeatmapBtn}`} 
                             />
                         </div>
