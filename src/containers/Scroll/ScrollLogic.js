@@ -5,15 +5,15 @@ import Filter from '../Filter/Filter';
 import HandleData from '../../hooks/HandleData';
 
 const ScrollLogic = () => {    
-    const [currentStepIndex, setCurrentStepIndex] = useState(null);  
+    const [currentStepIndex, setCurrentStepIndex] = useState(null);          
     
     const { deviceType, selectedIndustry, } = HandleData();
 
-    const filterRef = useRef();
+    const filterRef = useRef();    
 
     const onStepEnter = ({ data }) => {
         setCurrentStepIndex(data);
-    };          
+    };      
 
     const mapSteps = [1, 2, 3, 4, 5,].map((_, stepIndex) => (
         <Step data={stepIndex} key={stepIndex}>
@@ -22,7 +22,7 @@ const ScrollLogic = () => {
             {stepIndex === 1 && <div className="scroll-el"><p className="scroll-el__text">To begin, we scour the web for qualifying documents and digital artifacts that produce a match against the extensive term tree we have defined for each of the <span className="font-text-bold ultraLight">seven essential supply chain functions.</span></p></div>}            
             {stepIndex === 2 && <div className="scroll-el"><p className="scroll-el__text">In an ideal world, the distribution of this “semantic trail” would be <span className="ultraLight font-text-bold">equal across all seven functional areas</span>.<br /><br />This would ensure balance among supply chain leaders competing responsibilities on both sides:</p> <ul style={{paddingLeft: '20px'}}><li className="white scroll-el__text--list" style={{marginBottom: '5px'}}><span className="yolk font-text-bold">Supply</span> – maintaining total accountability of their operations</li><li className="white scroll-el__text--list"><span className="emerald font-text-bold">Demand</span> – catering to the ever-increasing customer expectations</li></ul></div>}
             {stepIndex === 3 && <div className="scroll-el scroll-el__last"><p className="scroll-el__text"><span className="font-text-bold ultraLight">But we do not live in an ideal world.</span><br/><br />Based on an initial study of 100 leading brands, our term tree reveals nearly 80% more digital artifacts associated with <span className="emerald font-text-bold">Demand-side</span> functions when viewed in aggregate{deviceType === 'Mobile' ? ' by industry using the filter below.' : '.'}</p></div>}
-            {stepIndex === 4 && <div ref={filterRef} className={`scroll-el-filter white`}><div className=""><p className="white font-text-bold tac scroll-el-filter__cta">Explore how this imbalance shifts by industry:</p></div><Filter /></div>}
+            {stepIndex === 4 && <div ref={filterRef} className={`scroll-el-filter white`}><div className=""><p className="white font-text-bold tac scroll-el-filter__cta">Explore how this imbalance shifts by industry:</p></div><Filter listDirection={'up'} /></div>}
             </div>
         </Step>
     ))
@@ -490,6 +490,18 @@ const ScrollLogic = () => {
                 .style('visibility', 'hidden')            
         }
 
+        if (scrollY < 1.5 || scrollY > 5.3) {
+            d3Ref.select('.jump-cta')
+                .transition()
+                .duration(500)
+                .style('visibility', 'hidden')   
+        } else {
+            d3Ref.select('.jump-cta')
+                .transition()
+                .duration(500)
+                .style('visibility', 'visible')   
+        }
+
         // show animated rain elements
         if (scrollY > 2.85 && scrollY < 3.7) {
             d3Ref.selectAll('.animation-rain')
@@ -807,7 +819,7 @@ const ScrollLogic = () => {
              mapSteps,
              animateSvg,
              positionSvg,
-             filterRef,
+             filterRef, 
             };
 }
 

@@ -28,21 +28,20 @@
 .supply-chain-interactive-container { 
     max-width: 1270px; 
     margin: 0 auto;   
-    // padding-bottom: 100px;
     box-sizing: border-box;
 }
 
 .header-container {
+    height: 100%;
     box-sizing: border-box;
     margin: auto;
     max-width : 900px;
-    // height: 100vh;
     padding: 50px;
     &__logo {
         text-align: center;
         margin-bottom: 50px;
         img {
-            width: 170px;
+            width: 55px;
         }
     }
 }
@@ -90,14 +89,12 @@
 }
 
 .scroll-board-wrapper {
-    // height: 5000px;
     height: calc(470vh + 800px);
 }
 
 .scroll-board {
     width: 100%;
     height: 100vh;
-    // background-color: $charcoal;
     margin: 0 auto;
     padding: 50px 30px;
     top: 0;
@@ -116,10 +113,7 @@
     left: 0px;
     width: 100%;
     height: calc(100vh - 100px);
-    // background-color: $black;
     background-color: transparent;
-    // opacity: 0.65;
-    // text-align: center;
 }
 
 .scroll-el {
@@ -160,12 +154,19 @@
     }
 }
 
-// .scroll-el-filter-label {
-//     max-width: 450px;
-//     margin: 0 auto;
-//     z-index: 999998;
-//     margin-bottom: 50px;
-// }
+.jump-cta {
+    color: #fff;
+    position: absolute; 
+    right: 0px; 
+    bottom: 0px;
+    border: $ultraLight 3px solid;
+    padding: 8px 18px;
+}
+
+.jump-cta:hover {
+    background-color: $ultraLight;
+    transition: background-color 0.5s;
+}
 
 .tool-wrapper-container {
     box-sizing: border-box;
@@ -212,7 +213,6 @@
             text-align: center;
         }
         &--container {            
-            // height: 70vh;
             height: 450px;
             text-align: center;               
             position: relative;
@@ -482,9 +482,10 @@
         padding: 0px 30px;
         &__logo {
             text-align: left;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            margin-top: 20px;
             img {
-                width: 120px;
+                width: 40px;
             }
         }
     }
@@ -537,14 +538,9 @@
     .tooltip-bubble {
         width: 70%;
         background-color: $black;
-        // position: fixed;
         top: -100px;
         left: 50%;
         transform: translate(-50%, 0%);
     }
-
-    // .tool-wrapper__sidebar--label { font-size: 13px !important; }
-    // .tool-wrapper__sidebar--desc p { font-size: 13px !important; }
-    // .cta-box-mobile p { font-size: 13px !important; }
 }
 

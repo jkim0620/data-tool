@@ -3,7 +3,9 @@ import ToolContext from '../../hooks/ToolContext';
 import HandleData from '../../hooks/HandleData';
 import Arrow from  '../../assets/img/arrow_down.svg';
 
-const Filter = () => {
+const Filter = (props) => {
+    const { listDirection } = props;
+
     const { selectedIndustry, handleIndustrySelect, } = useContext(ToolContext);    
     const { filterList, deviceType } = HandleData();
     
@@ -41,11 +43,10 @@ const Filter = () => {
         return (<FilterLists key={index} industry={el} />)
     });  
 
-
     return (
         <div ref={filterRef} className="industry-filter pointer" onClick={toggleFilter}>
             <div className="industry-filter__label font-text-bold white">{selectedIndustry} <img className="industry-filter__arrow" style={{ transform: `${showFilterMenu ? 'rotate(180deg)' : 'rotate(0deg)'}` }} src={Arrow} /></div>
-            <ul className={`industry-filter__ul ${showFilterMenu ? 'block' : 'hide'}`} style={{top: `${selectedIndustry === 'Select an Industry' ? deviceType === 'Mobile' ? '-264px' : '-424px' : '18px'}` }}>
+            <ul className={`industry-filter__ul ${showFilterMenu ? 'block' : 'hide'}`} style={{top: `${listDirection === 'up' ? deviceType === 'Mobile' ? '-264px' : '-424px' : '18px'}` }}>
                 {drawFilterMenu}
             </ul>
         </div>

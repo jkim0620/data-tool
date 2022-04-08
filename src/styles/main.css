@@ -198,6 +198,7 @@ a:hover {
 }
 
 .header-container {
+  height: 100%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   margin: auto;
@@ -211,7 +212,7 @@ a:hover {
 }
 
 .header-container__logo img {
-  width: 170px;
+  width: 55px;
 }
 
 .intro-wrapper__titlebox {
@@ -328,6 +329,21 @@ a:hover {
 .scroll-el-filter__cta {
   margin-top: 0;
   margin-bottom: 70px;
+}
+
+.jump-cta {
+  color: #fff;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  border: #695CFF 3px solid;
+  padding: 8px 18px;
+}
+
+.jump-cta:hover {
+  background-color: #695CFF;
+  -webkit-transition: background-color 0.5s;
+  transition: background-color 0.5s;
 }
 
 .tool-wrapper-container {
@@ -691,10 +707,11 @@ a:hover {
   }
   .header-container__logo {
     text-align: left;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    margin-top: 20px;
   }
   .header-container__logo img {
-    width: 120px;
+    width: 40px;
   }
   .intro-wrapper {
     display: -webkit-box;

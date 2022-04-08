@@ -5,6 +5,7 @@ import throttle from 'lodash.throttle';
 import ToolContext from '../../hooks/ToolContext';
 import HandleData from '../../hooks/HandleData';
 import ScrollLogic from './ScrollLogic.js';
+import Filter from '../Filter/Filter';  
 import Tool from '../Tool/Tool';
 import Sidebar from '../Sidebar/Sidebar';
 import VideoImg from '../../assets/img/supply-chain-credibility-design_video1.png';
@@ -57,17 +58,24 @@ const Scroll = () => {
 
     const toolRef = useRef(),
           scrollRef = useRef(),
-          svgRef = useRef();
+          svgRef = useRef(),
+          jumpRef = useRef();
 
-    const [ hideIntro, setHideIntro ] = useState(false);      
+    const [ hideIntro, setHideIntro ] = useState(false),
+          [ jumpToFilter, setJumpToFilter ] = useState(false);            
     
     useEffect(() => {
         positionSvg(svgRef, allData);        
     }, [])
-
+    
     useEffect(() => {
         deviceType === 'Desktop' ? toolRef.current.scrollIntoView({behavior:'smooth'}) : toolRef.current.scrollIntoView();   
         
+        if (selectedIndustry !== 'Select an Industry' && jumpToFilter) {            
+            setTimeout(() => {
+                setJumpToFilter(false);
+            }, 1000)            
+        }
         // const delayTime = deviceType === 'Desktop' ? 1000 : 0;
         if (selectedIndustry !== 'Select an Industry' && !hideIntro && deviceType === 'Desktop') {
             setTimeout(() => {
@@ -76,6 +84,8 @@ const Scroll = () => {
         } else if (selectedIndustry !== 'Select an Industry' && !hideIntro && deviceType === 'Mobile') {
             filterRef.current.className = 'hide';
         }
+
+       
     }, [selectedIndustry])
 
     useEffect(() => {
@@ -94,11 +104,12 @@ const Scroll = () => {
                 industryData, 
                 allData,
         }}>
-            <div className={`${hideIntro ? 'hide' : 'block'} scroll-board-wrapper`} ref={scrollRef}>
+            <div className={`${hideIntro || jumpToFilter ? 'hide' : 'block'} scroll-board-wrapper`} ref={scrollRef}>
                 <Sticker>
                     <div className={`scroll-board`}>
                         <div className="animation-wrapper" ref={svgRef}>
-                            <svg style={{width: '100%', height: '100%',}}>
+                            <div className={`jump-cta pointer font-text-bold ${selectedIndustry !== 'Select an Industry' && 'hide'}`} onClick={ () => { setJumpToFilter(true) } }>JUMP TO TOOL</div>
+                            <svg style={{ width: '100%', height: '100%', }}>
                                 <g>
                                     <image className="animation-el animation-el-doc1"  x="10" y="0" width="200px" href={DocImg1}></image>    
                                     <image className="animation-el animation-el-doc2" x="600" y="10" width="150px" href={DocImg2}></image>    
@@ -196,6 +207,15 @@ const Scroll = () => {
                 </Scrollama>                
             </div>                   
 
+            <div ref={jumpRef} className={`${!jumpToFilter ? 'hide' : 'block'}`} style={{height: '100vh'}}>
+                <div className="flex" style={{height: '100vh', justifyContent: 'center', alignItems: 'center'}}>
+                    <div style={{maxWidth: '450px', flexGrow: 1,}}>
+                        <p className="white tac font-text-bold" style={{marginBottom: '40px'}}>Explore how this imbalance shifts by industry:</p>
+                        <Filter listDirection={'up'} />
+                    </div>
+                </div>
+            </div>
+
             <div ref={toolRef} className={`${selectedIndustry !== 'Select an Industry' ? 'block' : 'hide'}`}>
                 {/* <Sticker> */}
                     <div className="tool-wrapper-container">
@@ -203,7 +223,7 @@ const Scroll = () => {
                             <Sidebar />    
                             <Tool />
                         </div> 
-                        <div className="gray" style={{fontSize: '0.8em', marginTop: '30px'}}>Source: Zero100.</div>
+                        <div className="gray" style={{fontSize: '0.8em', marginTop: '30px'}}>Source: Zero100 Index, Q1 2022.</div>
                     </div>   
 
                 {/* </Sticker> */}

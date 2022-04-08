@@ -69,12 +69,12 @@ const Sidebar = () => {
             </div>
 
             <div className="tool-wrapper__sidebar--filter">
-                <Filter />
+                <Filter listDirection={'down'} />
             </div>
 
             <div className="sidebar-mobile"> 
                 <div className="sidebar-mobile__filter">
-                    <Filter />
+                    <Filter listDirection={'down'} />
                 </div>
                 <div className="sidebar-mobile__header">
                     <div className="hide" ref={toggleMobileRef} style={{justifyContent: 'end'}}>
