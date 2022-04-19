@@ -97,7 +97,7 @@ const ToolLogic = () => {
                                     return `step-label ${d.step} font-text-reg`;
                                 })
                                 .attr('fill', d => {
-                                    return d.step === 'Sell' || d.step === 'Use' || d.step === 'Regenerate' ? color.emerald : color.yolk;
+                                    return d.step === 'Sell' || d.step === 'Use' || d.step === 'Regenerate' ? color.yolk : color.emerald;
                                 })
                                 .attr('x', (d, i) => {
                                     return (colWidth * i) + (colWidth / 2) - 5;
@@ -158,10 +158,10 @@ const ToolLogic = () => {
                                     .append('circle')
                                     .attr('class', 'industry-bubble')
                                     .attr('fill', d => {
-                                        return d.step === 'Sell' || d.step === 'Use' || d.step === 'Regenerate' ? color.emerald : color.yolk;
+                                        return d.step === 'Sell' || d.step === 'Use' || d.step === 'Regenerate' ? color.yolk : color.emerald;
                                     })
                                     .attr('stroke', d => {
-                                        return d.step === 'Sell' || d.step === 'Use' || d.step === 'Regenerate' ? color.emerald : color.yolk;
+                                        return d.step === 'Sell' || d.step === 'Use' || d.step === 'Regenerate' ? color.yolk : color.emerald;
                                     })
                                     .attr('stroke-width', '3px')
                                     .attr('pointer-events', 'none')
@@ -282,9 +282,9 @@ const ToolLogic = () => {
                             if (d.bubble_size * 100 > 10) {
                                 return color.black;
                              } else if (d.step === 'Sell' || d.step === 'Use' || d.step === 'Regenerate') {
-                                 return color.emerald;
-                             } else {
                                  return color.yolk;
+                             } else {
+                                 return color.emerald;
                              }
                         });                          
 
@@ -303,7 +303,7 @@ const ToolLogic = () => {
 
             svg.select(`.${thisData.step}`)
                 .attr('fill', () => {
-                    return thisData.step === 'Sell' || thisData.step === 'Use' || thisData.step === 'Regenerate' ? color.emerald : color.yolk;
+                    return thisData.step === 'Sell' || thisData.step === 'Use' || thisData.step === 'Regenerate' ? color.yolk : color.emerald;
                 });
 
             tooltipRefEl.current.style.opacity = '1';
@@ -324,7 +324,7 @@ const ToolLogic = () => {
                 difference: scoreDifference === 0 ? 'the same' : thisData.bubble_size * 100 > allAvgScore ? `${scoreDifference}% more` : `${scoreDifference}% less`,
                 industry: thisData.industry === 'Chemicals & Materials' ? 'Chemical & Material' : thisData.industry === 'Consumer Packaged Goods' ? 'CPG' : thisData.industry === 'Multinationals' ? 'Multinational' : `${thisData.industry}`,
                 desc: descByStep[`${thisData.step}`],
-                stepColor: thisData.step === 'Sell' || thisData.step === 'Use' || thisData.step === 'Regenerate' ? 'emerald' : 'yolk',
+                stepColor: thisData.step === 'Sell' || thisData.step === 'Use' || thisData.step === 'Regenerate' ? 'yolk' : 'emerald',
             })
 
             industryBubbles.transition()
@@ -333,18 +333,18 @@ const ToolLogic = () => {
                                 if (d.step !== thisData.step) {
                                     return color.gray;
                                 } else if (d.step === 'Sell' || d.step === 'Use' || d.step === 'Regenerate') {
-                                    return color.emerald;
-                                } else {
                                     return color.yolk;
+                                } else {
+                                    return color.emerald;
                                 }
                             })                                            
                             .attr('stroke', d => {
                                 if (d.step !== thisData.step) {
                                     return color.gray;
                                 } else if (d.step === 'Sell' || d.step === 'Use' || d.step === 'Regenerate') {
-                                    return color.emerald;
-                                } else {
                                     return color.yolk;
+                                } else {
+                                    return color.emerald;
                                 }
                             })
                             .attr('opacity', d => {
@@ -373,9 +373,9 @@ const ToolLogic = () => {
                                 } else if (d.bubble_size * 100 > 10) {
                                     return color.black;
                                 } else if (d.step === 'Sell' || d.step === 'Use' || d.step === 'Regenerate') {
-                                    return color.emerald;
-                                } else {
                                     return color.yolk;
+                                } else {
+                                    return color.emerald;
                                 }
                             });       
         }
@@ -389,23 +389,23 @@ const ToolLogic = () => {
 
             svg.selectAll('.step-label')
                 .attr('fill', d => {
-                    return d.step === 'Sell' || d.step === 'Use' || d.step === 'Regenerate' ? color.emerald : color.yolk;
+                    return d.step === 'Sell' || d.step === 'Use' || d.step === 'Regenerate' ? color.yolk : color.emerald;
                 });
 
             industryBubbles.transition()
                             .duration(400)
                             .attr('fill', d => {
                                 if (d.step === 'Sell' || d.step === 'Use' || d.step === 'Regenerate') {
-                                    return color.emerald;
-                                } else {
                                     return color.yolk;
+                                } else {
+                                    return color.emerald;
                                 }
                             })                                            
                             .attr('stroke', d => {
                                 if (d.step === 'Sell' || d.step === 'Use' || d.step === 'Regenerate') {
-                                    return color.emerald;
-                                } else {
                                     return color.yolk;
+                                } else {
+                                    return color.emerald;
                                 }
                             })
                             .attr('opacity', 1); 
@@ -420,9 +420,9 @@ const ToolLogic = () => {
                             if (d.bubble_size * 100 > 10) {
                                 return color.black;
                             } else if (d.step === 'Sell' || d.step === 'Use' || d.step === 'Regenerate') {
-                                return color.emerald;
-                            } else {
                                 return color.yolk;
+                            } else {
+                                return color.emerald;
                             }
                         });
         }

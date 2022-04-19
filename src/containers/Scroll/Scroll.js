@@ -70,19 +70,23 @@ const Scroll = () => {
     
     useEffect(() => {
         deviceType === 'Desktop' ? toolRef.current.scrollIntoView({behavior:'smooth'}) : toolRef.current.scrollIntoView();   
-        
-        if (selectedIndustry !== 'Select an Industry' && jumpToFilter) {            
+            
+        if (selectedIndustry !== 'Select an Industry' && jumpToFilter && deviceType === 'Desktop') {            
             setTimeout(() => {
                 setJumpToFilter(false);
             }, 1000)            
         }
-        // const delayTime = deviceType === 'Desktop' ? 1000 : 0;
+        
         if (selectedIndustry !== 'Select an Industry' && !hideIntro && deviceType === 'Desktop') {
             setTimeout(() => {
                 setHideIntro(true);
             }, 1000)            
-        } else if (selectedIndustry !== 'Select an Industry' && !hideIntro && deviceType === 'Mobile') {
+        } else if (selectedIndustry !== 'Select an Industry' && !hideIntro && deviceType === 'Mobile' && !jumpToFilter) { 
             filterRef.current.className = 'hide';
+        } else if (selectedIndustry !== 'Select an Industry' && !hideIntro && deviceType === 'Mobile' && jumpToFilter) {
+            setTimeout(() => {
+                setHideIntro(true);
+            }, 1000)            
         }
 
        
@@ -173,13 +177,13 @@ const Scroll = () => {
 
                                     <svg className="chart-svg" style={{height: '100%',}}>
                                         <g>
-                                            <text className="scroll-tool-label scroll-tool-label-1 scroll-tool-label-yolk" y="250px" textAnchor="middle" fill="transparent" style={{fontWeight: 700}}>Plan</text>
-                                            <text className="scroll-tool-label scroll-tool-label-2 scroll-tool-label-yolk" y="250px"  textAnchor="middle" fill="transparent" style={{fontWeight: 700}}>Source</text>                                                
-                                            <text className="scroll-tool-label scroll-tool-label-3 scroll-tool-label-yolk" y="250px" textAnchor="middle" fill="transparent" style={{fontWeight: 700}}>Make</text>
-                                            <text className="scroll-tool-label scroll-tool-label-4 scroll-tool-label-yolk" y="250px" textAnchor="middle" fill="transparent" style={{fontWeight: 700}}>Move</text>
-                                            <text className="scroll-tool-label scroll-tool-label-5 scroll-tool-label-emerald" y="250px" textAnchor="middle" fill="transparent" style={{fontWeight: 700}}>Sell</text>
-                                            <text className="scroll-tool-label scroll-tool-label-6 scroll-tool-label-emerald" y="250px" textAnchor="middle" fill="transparent" style={{fontWeight: 700}}>Use</text>
-                                            <text className="scroll-tool-label scroll-tool-label-7 scroll-tool-label-emerald" y="250px" textAnchor="middle" fill="transparent" style={{fontWeight: 700}}>Regenerate</text>
+                                            <text className="scroll-tool-label scroll-tool-label-1 scroll-tool-label-emerald" y="250px" textAnchor="middle" fill="transparent" style={{fontWeight: 700}}>Plan</text>
+                                            <text className="scroll-tool-label scroll-tool-label-2 scroll-tool-label-emerald" y="250px"  textAnchor="middle" fill="transparent" style={{fontWeight: 700}}>Source</text>                                                
+                                            <text className="scroll-tool-label scroll-tool-label-3 scroll-tool-label-emerald" y="250px" textAnchor="middle" fill="transparent" style={{fontWeight: 700}}>Make</text>
+                                            <text className="scroll-tool-label scroll-tool-label-4 scroll-tool-label-emerald" y="250px" textAnchor="middle" fill="transparent" style={{fontWeight: 700}}>Move</text>
+                                            <text className="scroll-tool-label scroll-tool-label-5 scroll-tool-label-yolk" y="250px" textAnchor="middle" fill="transparent" style={{fontWeight: 700}}>Sell</text>
+                                            <text className="scroll-tool-label scroll-tool-label-6 scroll-tool-label-yolk" y="250px" textAnchor="middle" fill="transparent" style={{fontWeight: 700}}>Use</text>
+                                            <text className="scroll-tool-label scroll-tool-label-7 scroll-tool-label-yolk" y="250px" textAnchor="middle" fill="transparent" style={{fontWeight: 700}}>Regenerate</text>
                                             <text className="scroll-tool-score" y="365px" fontWeight="600" textAnchor="middle" fill="transparent">14%</text>
                                             <text className="scroll-tool-score" y="365px" fontWeight="600" textAnchor="middle" fill="transparent">14%</text>                                                
                                             <text className="scroll-tool-score" y="365px" fontWeight="600" textAnchor="middle" fill="transparent">14%</text>
@@ -187,13 +191,13 @@ const Scroll = () => {
                                             <text className="scroll-tool-score" y="365px" fontWeight="600" textAnchor="middle" fill="transparent">14%</text>
                                             <text className="scroll-tool-score" y="365px" fontWeight="600" textAnchor="middle" fill="transparent">14%</text>
                                             <text className="scroll-tool-score" y="365px" fontWeight="600" textAnchor="middle" fill="transparent">14%</text>
-                                            <circle className="scroll-tool-circle" cy="360px" r="0" fill="transparent" stroke="#FF9B00" strokeDasharray="5, 4" strokeWidth="3px"></circle>
-                                            <circle className="scroll-tool-circle" cy="360px" r="0" fill="transparent" stroke="#FF9B00" strokeDasharray="5, 4" strokeWidth="3px"></circle>
-                                            <circle className="scroll-tool-circle" cy="360px" r="0" fill="transparent" stroke="#FF9B00" strokeDasharray="5, 4" strokeWidth="3px"></circle>
-                                            <circle className="scroll-tool-circle" cy="360px" r="0" fill="transparent" stroke="#FF9B00" strokeDasharray="5, 4" strokeWidth="3px"></circle>
                                             <circle className="scroll-tool-circle" cy="360px" r="0" fill="transparent" stroke="#00D885" strokeDasharray="5, 4" strokeWidth="3px"></circle>
                                             <circle className="scroll-tool-circle" cy="360px" r="0" fill="transparent" stroke="#00D885" strokeDasharray="5, 4" strokeWidth="3px"></circle>
                                             <circle className="scroll-tool-circle" cy="360px" r="0" fill="transparent" stroke="#00D885" strokeDasharray="5, 4" strokeWidth="3px"></circle>
+                                            <circle className="scroll-tool-circle" cy="360px" r="0" fill="transparent" stroke="#00D885" strokeDasharray="5, 4" strokeWidth="3px"></circle>
+                                            <circle className="scroll-tool-circle" cy="360px" r="0" fill="transparent" stroke="#FF9B00" strokeDasharray="5, 4" strokeWidth="3px"></circle>
+                                            <circle className="scroll-tool-circle" cy="360px" r="0" fill="transparent" stroke="#FF9B00" strokeDasharray="5, 4" strokeWidth="3px"></circle>
+                                            <circle className="scroll-tool-circle" cy="360px" r="0" fill="transparent" stroke="#FF9B00" strokeDasharray="5, 4" strokeWidth="3px"></circle>
                                         </g>
                                     </svg>
                                 </g>
