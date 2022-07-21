@@ -1,11 +1,15 @@
 $black: #000;
 $white: #fff;
 $emerald: #00D885; 
+$lightEmerald: #99CEBA;
 $yolk: #FF9B00;
+$lightYolk: #ffd799;
+$ultraMarine: #321aad;
 $ultraLight: #695CFF;
 $pink: #E7045E;
 $charcoal: #121212;
 $gray: #999999;
+$mediumGray: #666;
 $midnight: #1e1d3c;
 
 $neueHaasGroteskDisplay: 'neue-haas-grotesk-display';
@@ -21,14 +25,15 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: neue-haas-grotesk-display;
+    font-family: $neueHaasGroteskDisplay, sans-serif;
     font-weight: 700;
   }
 
-h1 { font-size: 4.5em; }  
+// h1 { font-size: 4.5em; }  
   
 p {
-    font-family: neue-haas-grotesk-text;
+    font-family: $neueHaasGroteskText, sans-serif;
+    // font-family: neue-haas-grotesk-text;
     font-weight: 400;
     font-size: 16px;
     line-height: 1.4em;
@@ -72,16 +77,23 @@ a:hover {
 .black { color: $black; }
 .white { color: $white; }
 .emerald { color: $emerald; }
+.lightEmerald { color: $lightEmerald; }
 .yolk { color: $yolk; }
+.lightYolk { color: $lightYolk }
+.ultraMarine { color: $ultraMarine; }
 .ultraLight { color: $ultraLight; }
 .pink { color: $pink; }
 .charcoal { color: $charcoal; }
 .gray { color: $gray; }
+.mediumGray {color: $mediumGray; }
 
 .bg-black { background-color: $black; }
 .bg-white { background-color: $white; }
-.bg-emarald { background-color: $emerald; }
+.bg-emerald { background-color: $emerald; }
+.bg-lightEmerald { background-color: $lightEmerald; }
 .bg-yolk { background-color: $yolk; }
+.bg-lightYolk { background-color: $lightYolk }
+.bg-ultraMarine { background-color: $ultraMarine; }
 .bg-ultraLight { background-color: $ultraLight; }
 .bg-pink { background-color: $pink; }
 .bg-charcoal { background-color: $charcoal; }
@@ -97,3 +109,4 @@ a:hover {
 .block { display: block; }
 .flex { display: flex; }
 .flex-v-center { align-items: center; }
+.flex-h-center { justify-content: center; }

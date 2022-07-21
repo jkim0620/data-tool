@@ -1,22 +1,27 @@
-import React from 'react';
+import React, { useEffect, useRef, useState, useMemo }  from 'react';
 import './App.css';
 import Intro from './containers/Intro/Intro';
-import Scroll from './containers/Scroll/Scroll';
-import FlipIcon from './assets/img/icon-phone-flip.svg';
-import HandleData from './hooks/HandleData';
-import AlertIcon from './assets/img/icon-alert.png'; 
+import ToolWrapper from './containers/ToolWrapper/ToolWrapper';
+import AlertIcon from './assets/img/warning-icon-01.svg'
+import HandleFunction from './hooks/HandleFunction';
 
 function App() {
-	const {deviceType} = HandleData();
-  	return (
-		
-		<div className="bg-black">
-			<div className="alert-modal">
-				<div className="white font-tex-bold" style={{fontSize: '55px'}}><img style={{width: '150px'}} src={FlipIcon} /></div>
+	const {deviceType, useIsInViewport} = HandleFunction();	
+
+	const toolRef = useRef();
+
+	const isToolInViewport = useIsInViewport(toolRef)
+
+  	return (		
+		<div className="bg-charcoal">
+			{/* {deviceType === 'Mobile' &&
+			<div className={`alert-modal`}>
+				<div className="white font-text-bold tac"><img style={{width: '100px'}} src={AlertIcon} /><div><p className="font-text-bold">Mobile experience coming soon</p></div></div>
 			</div>
-			<div className="supply-chain-interactive-container">			
-				<Intro />
-				<Scroll />
+			} */}
+			<div className="">			
+				<Intro ref={toolRef} isToolInViewport={isToolInViewport} />
+				<ToolWrapper ref={toolRef} />
 			</div>				
 		</div>
 				

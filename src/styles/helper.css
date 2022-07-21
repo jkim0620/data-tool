@@ -1,3 +1,5 @@
+html { background-color: #000; }
+
 body {
   margin: 0;
   font-family: "neue-haas-grotesk-text", sans-serif;
@@ -9,16 +11,12 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: neue-haas-grotesk-display;
+  font-family: "neue-haas-grotesk-display", sans-serif;
   font-weight: 700;
 }
 
-h1 {
-  font-size: 4.5em;
-}
-
 p {
-  font-family: neue-haas-grotesk-text;
+  font-family: "neue-haas-grotesk-text", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.4em;
@@ -73,8 +71,20 @@ a:hover {
   color: #00D885;
 }
 
+.lightEmerald {
+  color: #99CEBA;
+}
+
 .yolk {
   color: #FF9B00;
+}
+
+.lightYolk {
+  color: #ffd799;
+}
+
+.ultraMarine {
+  color: #321aad;
 }
 
 .ultraLight {
@@ -93,6 +103,10 @@ a:hover {
   color: #999999;
 }
 
+.mediumGray {
+  color: #666;
+}
+
 .bg-black {
   background-color: #000;
 }
@@ -101,12 +115,24 @@ a:hover {
   background-color: #fff;
 }
 
-.bg-emarald {
+.bg-emerald {
   background-color: #00D885;
+}
+
+.bg-lightEmerald {
+  background-color: #99CEBA;
 }
 
 .bg-yolk {
   background-color: #FF9B00;
+}
+
+.bg-lightYolk {
+  background-color: #ffd799;
+}
+
+.bg-ultraMarine {
+  background-color: #321aad;
 }
 
 .bg-ultraLight {
@@ -159,5 +185,11 @@ a:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.flex-h-center {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 /*# sourceMappingURL=helper.css.map */
