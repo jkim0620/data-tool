@@ -1,13 +1,13 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
 import ToolContext from '../../hooks/ToolContext';
 import HandleData from '../../hooks/HandleData';
-import Arrow from  '../../assets/img/arrow_down.svg';
+//import Arrow from  '../../assets/img/arrow_down.svg';
 
 const Filter = (props) => {
     const { listDirection } = props;
 
-    const { selectedIndustry, handleIndustrySelect, } = useContext(ToolContext);    
-    const { filterList, deviceType } = HandleData();
+    const { selectedLabel, handleLabelSelect, } = useContext(ToolContext);    
+    const { labelList, deviceType,  } = HandleData();
     
     const filterRef = useRef();
     const [showFilterMenu, setShowFilterMenu] = useState(false);
@@ -31,22 +31,23 @@ const Filter = (props) => {
 
 
     const FilterLists = (props) => {
-        const { industry }= props;
-        return (<li onClick={ () => { handleIndustrySelect(industry); } } className={`industry-filter__ul--list ${selectedIndustry === industry && 'selected'} pointer font-text-bold gray`}>{industry}</li>)
+        const { label }= props;
+        return (<li onClick={ () => { handleLabelSelect(label); } } className={`label-filter__ul--list ${selectedLabel === label && 'selected'} pointer font-text-bold gray`} style={{padding: '5px 3px'}}>{label}</li>)
+        // return (<li className={`label-filter__ul--list pointer font-text-bold gray`} style={{padding: '5px 3px'}}>{label}</li>)
     }
 
     const toggleFilter = () => {
         setShowFilterMenu(!showFilterMenu);
     }
 
-    const drawFilterMenu = filterList.map((el, index) => {
-        return (<FilterLists key={index} industry={el} />)
+    const drawFilterMenu = labelList.map((el, index) => {
+        return (<FilterLists key={index} label={el} />)
     });  
 
     return (
-        <div ref={filterRef} className="industry-filter pointer" onClick={toggleFilter}>
-            <div className="industry-filter__label font-text-bold white">{selectedIndustry} <img className="industry-filter__arrow" style={{ transform: `${showFilterMenu ? 'rotate(180deg)' : 'rotate(0deg)'}` }} src={Arrow} /></div>
-            <ul className={`industry-filter__ul ${showFilterMenu ? 'block' : 'hide'}`} style={{top: `${listDirection === 'up' ? deviceType === 'Mobile' ? '-264px' : '-424px' : '18px'}` }}>
+        <div ref={filterRef} className="industry-filter pointer" style={{width: '200px'}} onClick={toggleFilter}>
+            <div className="industry-filter__label font-text-bold white">Select</div>
+            <ul className={`industry-filter__ul ${showFilterMenu ? 'block' : 'hide'}`} style={{top: `${listDirection === 'up' ? deviceType === 'Mobile' ? '-264px' : '-424px' : '18px'}`, maxHeight: '500px', overflow: 'scroll' }}>
                 {drawFilterMenu}
             </ul>
         </div>

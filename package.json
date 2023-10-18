@@ -1,5 +1,5 @@
 {
-  "name": "zero100-supply-chains-and-the-collision-of-digital-esg-people",
+  "name": "research-report",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -7,13 +7,13 @@
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "d3": "^7.3.0",
+    "d3-array": "^3.2.4",
+    "d3-collection": "^1.0.7",
     "lodash.throttle": "^4.1.1",
     "node-sass": "^7.0.1",
-    "react": "^16.0.0",
-    "react-dom": "^17.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-scripts": "5.0.0",
-    "react-scrollama": "^2.2.16",
-    "react-stickyfill": "^0.2.5",
     "web-vitals": "^2.1.3"
   },
   "scripts": {

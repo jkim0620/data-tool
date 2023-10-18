@@ -1,30 +1,34 @@
-import React, { useEffect, useRef, useState, useMemo }  from 'react';
+import React, { useRef, useContext }  from 'react';
 import './App.css';
-import Intro from './containers/Intro/Intro';
-import ToolWrapper from './containers/ToolWrapper/ToolWrapper';
-import AlertIcon from './assets/img/warning-icon-01.svg'
-import HandleFunction from './hooks/HandleFunction';
+import BarChartH from './containers/BarChartH/BarChartH';
+import BarChartV from './containers/BarChartV/BarChartV';
+import LineChart from './containers/LineChart/LineChart';
+import ScatterPlotChart from './containers/ScatterPlotChart/ScatterPlotChart';
+import StackedBarChartH from './containers/StackedBarChartH/StackedBarChartH';
+import ToolContext from './hooks/ToolContext';
+import HandleData from './hooks/HandleData';
 
 function App() {
-	const {deviceType, useIsInViewport} = HandleFunction();	
-
 	const toolRef = useRef();
 
-	const isToolInViewport = useIsInViewport(toolRef)
+	const { selectedLabel, 
+			handleLabelSelect, 
+			handleStackedFilterSelect, 
+			selectedStackedFilter 
+		  } = HandleData();
 
   	return (		
-		<div className="bg-charcoal">
-			{/* {deviceType === 'Mobile' &&
-			<div className={`alert-modal`}>
-				<div className="white font-text-bold tac"><img style={{width: '100px'}} src={AlertIcon} /><div><p className="font-text-bold">Mobile experience coming soon</p></div></div>
-			</div>
-			} */}
-			<div className="">			
-				<Intro ref={toolRef} isToolInViewport={isToolInViewport} />
-				<ToolWrapper ref={toolRef} />
-			</div>				
-		</div>
-				
+		<div className="bg-black">
+			<ToolContext.Provider 
+				value={{ selectedLabel, handleLabelSelect, handleStackedFilterSelect, selectedStackedFilter }}
+			>	
+				<StackedBarChartH ref={toolRef} / >
+				{/* <ScatterPlotChart ref={toolRef} / > */}
+				{/* <BarChartV ref={toolRef} /> */}
+				{/* <BarChartH ref={toolRef} /> */}
+				{/* <LineChart ref={toolRef} /> */}
+			</ToolContext.Provider>
+		</div>				
   	);
 }
 
