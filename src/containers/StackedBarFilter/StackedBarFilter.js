@@ -8,7 +8,7 @@ const StackedBarFilter = () => {
 
     const FilterLists = (props) => {
         const { listId, list, color }= props;
-        return (<div onClick={ () => { handleStackedFilterSelect(listId); } } className={`label-filter__ul--list ${selectedStackedFilter === list && 'selected'} pointer font-text-bold white`} style={{padding: '7px 15px', border: `2px solid ${color}`, borderRadius: '20px', fontSize: '0.85rem', marginRight: '10px', marginBottom: '15px', backgroundColor: `${selectedStackedFilter === listId ? color : 'transparent'}`}}>{list}</div>)
+        return (<div onClick={ () => { handleStackedFilterSelect(listId); } } className={`label-filter__ul--list ${selectedStackedFilter === list && 'selected'} pointer font-text-bold white`} style={{padding: '7px 15px', border: `2px solid ${color}`, borderRadius: '20px', fontSize: '0.8rem', marginRight: '10px', marginBottom: '15px', backgroundColor: `${selectedStackedFilter === listId ? color : 'transparent'}`}}>{list}</div>)
     }
 
     const drawFilterMenu = stackedFilterList.map((el, index) => {
@@ -46,7 +46,7 @@ const StackedBarFilter = () => {
 
     return (
         <div className="industry-filter pointer" style={{display: 'flex', alignItems: 'center', flexWrap: 'wrap'}}>
-            <div style={{color: '#fff', fontWeight: 'bold', marginRight: '15px', marginBottom: '15px'}}>Sort By:</div>{drawFilterMenu}
+            <div style={{color: '#fff', fontWeight: 'bold', marginRight: '15px', marginBottom: '15px', fontSize: '0.9rem'}}>Sort By:</div>{drawFilterMenu}
         </div>
     )
 }

@@ -29,7 +29,8 @@ const StackedBarChartHorizontal = () => {
 
     return (
         <div className="chart chart-wrapper">
-            <div className="chart__title" style={{color: '#fff', fontWeight: 'bold'}}></div>
+            <div className="chart__title" style={{color: '#fff', fontWeight: 'bold', fontSize: '1.2rem', marginBottom: '18px'}}><span style={{color: '#00aef4'}}>Reponsible:</span> Measurement & Planning Tools Lag</div>
+            <p style={{color: '#fff', fontSize: '1rem', fontStyle: 'italic', marginBottom: '30px'}}>Q: How are you prioritizing the below decarbonization investments?</p>
 
             <StackedBarFilter />
 
@@ -37,14 +38,14 @@ const StackedBarChartHorizontal = () => {
             </div>  
 
             <div className="chart__source">
-                {/* <p>Q: "Looking ahead, what academic disciplines do you consider the best foundation for must-have skills that will dominate supply chain work in 2030? (Select up to 3)"
+                <p style={{color: '#888', fontSize: '0.8rem'}}>
                     <br />
-                    Source: Zero100 Q3 2022 Survey of U.S. Supply Chain Professionals.
+                    Source: Q1 2023 Survey of Supply Chain Leaders.
                     <br />
-                    n = 539 respondents
+                    n = 807
                     <br />
                     © 2022 Zero100. <span style={{ color: '#695cff', fontWeight: '700' }}>zero100.com</span>
-                </p> */}
+                </p>
             </div>   
 
             <div ref={tooltipRef} className="chart__tooltip">

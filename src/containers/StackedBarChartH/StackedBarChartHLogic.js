@@ -371,15 +371,6 @@ const StackedBarChartHorizontalLogic = () => {
         newD3Ref.select('.xaxis-label-100')
                 .attr('x', newXAxis(100))
                 .attr('y', newHeight + 25) 
-
-        // newSvg.append('line')  
-        //     .attr('class', 'xaxis-tick-100')
-        //     .attr('stroke', '#fff')
-        //     .attr('stroke-width', 2)
-        //     .attr("x1", newXAxis(100))
-        //     .attr("y1", 0)
-        //     .attr("x2", newXAxis(100))
-        //     .attr("y2", newHeight);
     }
         
     return { 

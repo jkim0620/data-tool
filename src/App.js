@@ -34,8 +34,8 @@ function App() {
 						selectedDonutFilter2, 
 						handleDonutFilter }}
 			>	
-				<DonutChart ref={toolRef} / >
-				{/* <StackedBarChartH ref={toolRef} / > */}
+				{/* <DonutChart ref={toolRef} / > */}
+				<StackedBarChartH ref={toolRef} / >
 				{/* <ScatterPlotChart ref={toolRef} / > */}
 				{/* <BarChartV ref={toolRef} /> */}
 				{/* <BarChartH ref={toolRef} /> */}
