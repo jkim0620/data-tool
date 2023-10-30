@@ -6,7 +6,7 @@ import ToolContext from '../../hooks/ToolContext';
 const StackedBarChartHorizontalLogic = () => {  
     const [tooltipDesc, setTooltipDesc] = useState({});
 
-    const { deviceType, } = HandleData();
+    const { deviceType, textWrap } = HandleData();
     const { selectedStackedFilter } = useContext(ToolContext);
     
     const drawBarChart = (data, refEl, tooltipRefEl) => {
@@ -14,19 +14,35 @@ const StackedBarChartHorizontalLogic = () => {
         
         let barHeight,
             chartHeight,
-            gapBetween = 10;
+            gapBetween = 10,
+            xaxisFontSize,
+            xaxisMarginTop,
+            yaxisFontSize,
+            yaxisMarginLeft;
 
         if (deviceType === 'Mobile') {
-            barHeight = 30;
+            barHeight = 50;
+            xaxisFontSize = '0.7rem';
+            xaxisMarginTop = 20;
+            yaxisFontSize = '0.7rem';
+            yaxisMarginLeft = 10;            
         } else if (data.length > 10) {
             barHeight = 50;
+            xaxisFontSize = '0.8rem';
+            xaxisMarginTop = 25;
+            yaxisFontSize = '0.8rem';
+            yaxisMarginLeft = 10;
         } else {
             barHeight = 60;
+            xaxisFontSize = '0.8rem';
+            xaxisMarginTop = 25;
+            yaxisFontSize = '0.8rem';
+            yaxisMarginLeft = 10;
         }
         
         chartHeight = (barHeight * data.length) + (gapBetween * data.length);
 
-        const margin = {left: deviceType !== 'Mobile' ? 250 : 100, right: 30, top: 40, bottom: 40},
+        const margin = {left: deviceType !== 'Mobile' ? 120 : 80, right: deviceType !== 'Mobile' ? 30 : 10, top: 40, bottom: 40},
               width = refEl.current.clientWidth - margin.left - margin.right,              
               height = chartHeight - margin.top - margin.bottom;              
 
@@ -65,7 +81,7 @@ const StackedBarChartHorizontalLogic = () => {
         
         // Draw x axis line and text                        
         svg.append('line')  
-            .attr('class', 'xaxis-tick')
+            .attr('class', 'xaxis-tick xaxis-tick-25')
             .attr('stroke', '#444')
             .attr('stroke-width', 2)
             .attr("x1", xAxis(25))
@@ -74,7 +90,7 @@ const StackedBarChartHorizontalLogic = () => {
             .attr("y2", height);             
 
         svg.append('line') 
-            .attr('class', 'xaxis-tick') 
+            .attr('class', 'xaxis-tick xaxis-tick-50') 
             .attr('stroke', '#444')
             .attr('stroke-width', 2)
             .attr("x1", xAxis(50))
@@ -83,7 +99,7 @@ const StackedBarChartHorizontalLogic = () => {
             .attr("y2", height); 
                         
         svg.append('line')  
-            .attr('class', 'xaxis-tick')
+            .attr('class', 'xaxis-tick xaxis-tick-75')
             .attr('stroke', '#444')
             .attr('stroke-width', 2)
             .attr("x1", xAxis(75))
@@ -92,35 +108,41 @@ const StackedBarChartHorizontalLogic = () => {
             .attr("y2", height);         
 
         svg.append('text')
+            .attr('class', 'xaxis-label-25')
             .attr('fill', '#d4d4d4')  
             .attr('x', xAxis(25))
-            .attr('y', height + 25) 
+            .attr('y', height + xaxisMarginTop) 
             .attr('text-anchor', 'middle')     
-            .style('font-size', '0.9rem')
+            .style('font-size', xaxisFontSize)
             .text('25%')
         
         svg.append('text')
+            .attr('class', 'xaxis-label-50')
             .attr('fill', '#d4d4d4')  
             .attr('x', xAxis(50))
-            .attr('y', height + 25) 
+            .attr('y', height + xaxisMarginTop) 
             .attr('text-anchor', 'middle')     
-            .style('font-size', '0.9rem')
+            .style('font-size', xaxisFontSize)
             .text('50%')
             
         svg.append('text')
+            .attr('class', 'xaxis-label-75')
             .attr('fill', '#d4d4d4')  
             .attr('x', xAxis(75))
-            .attr('y', height + 25) 
+            .attr('y', height + xaxisMarginTop) 
             .attr('text-anchor', 'middle')     
-            .style('font-size', '0.9rem')
+            .style('font-size', xaxisFontSize)
             .text('75%')
 
         svg.append('text')
+            .attr('class', 'xaxis-label-100')
             .attr('fill', '#d4d4d4')  
-            .attr('x', xAxis(100))
-            .attr('y', height + 25) 
+            .attr('x', () => {
+                return deviceType === 'Mobile' ? xAxis(98) : xAxis(100)
+            })
+            .attr('y', height + xaxisMarginTop) 
             .attr('text-anchor', 'middle')     
-            .style('font-size', '0.9rem')
+            .style('font-size', xaxisFontSize)
             .text('100%')
         
         const color = d3.scaleOrdinal()
@@ -140,6 +162,7 @@ const StackedBarChartHorizontalLogic = () => {
                         .data(d => d)
                         .enter()
                         .append('rect')
+                        .attr('class', 'bar-rect')
                         .attr('x', d => xAxis(d[0]))
                         .attr('y', d => yAxis(d.data.group))                        
                         .attr('width', 0 )
@@ -174,8 +197,7 @@ const StackedBarChartHorizontalLogic = () => {
             })  
 
         setTimeout(() => {
-            bars.on('mouseover' , e => {  
-                console.log('MOUSE OVER')                                      
+            bars.on('mouseover' , e => {                                
                 mouseOverBar(e);                                                    
             })
             .on('mouseout', mouseOutBar); 
@@ -190,9 +212,10 @@ const StackedBarChartHorizontalLogic = () => {
             .call(yAxisLine)
             .selectAll("text")
             .attr('fill', '#fff')
-            .attr("y", -3)
-            .style('font-size', '0.8rem')
-            .style("text-anchor", "end"); 
+            .attr("y", -13)
+            .style('font-size', yaxisFontSize)
+            .style("text-anchor", "end")
+            .call(textWrap, margin.left - yaxisMarginLeft); 
             
         svg.append('line')  
             .attr('class', 'xaxis-tick-100')
@@ -237,7 +260,7 @@ const StackedBarChartHorizontalLogic = () => {
                 bars.transition()
                 .duration(200)
                 .attr('opacity', d => {
-                    if (d.key === targetData.key && d.data["group"] === targetData.data["group"]) {
+                    if (d.group === targetData.group) {
                         return 1; 
                     } else {
                         return 0.5;
@@ -263,69 +286,100 @@ const StackedBarChartHorizontalLogic = () => {
     }  
 
     const handleResize = (refEl, data) => {
-        let barHeight,
-            chartHeight,
-            gapBetween = 10;
+        let newBarHeight,
+            newChartHeight,
+            newGapBetween = 10;
 
         if (deviceType === 'Mobile') {
-            barHeight = 30;
+            newBarHeight = 30;
         } else if (data.length > 10) {
-            barHeight = 40;
+            newBarHeight = 40;
         } else {
-            barHeight = 60;
+            newBarHeight = 60;
         }
         
-        chartHeight = (barHeight * data.length) + (gapBetween * data.length);
+        newChartHeight = (newBarHeight * data.length) + (newGapBetween * data.length);
 
-        const d3Ref = d3.select(refEl.current),
-            svg = d3Ref.select('.svg'),
-            bars = d3Ref.selectAll('.bar-rect'),
-            labels = d3Ref.selectAll('.bar-label'),
-            values = d3Ref.selectAll('.bar-value'),
-            yLine = d3Ref.select('.y-axis-line');
+        const newD3Ref = d3.select(refEl.current),
+            newSvg = newD3Ref.select('.svg'),
+            newBars = newD3Ref.selectAll('.bar-rect');
 
-        const margin = {left: deviceType !== 'Mobile' ? 200 : 100, right: 30, top: 40, bottom: 40},
-              newWidth = refEl.current.clientWidth - margin.left - margin.right,              
-              newHeight = chartHeight - margin.top - margin.bottom,
-              highestValue = parseInt(data[0].value) + 10; 
+        const newMargin = {left: deviceType !== 'Mobile' ? 120 : 80, right: deviceType !== 'Mobile' ? 30 : 10, top: 40, bottom: 40},
+              newWidth = refEl.current.clientWidth - newMargin.left - newMargin.right,              
+              newHeight = newChartHeight - newMargin.top - newMargin.bottom;                    
             
-        svg.attr('width', newWidth + margin.left + margin.right)
-            .attr('height', newHeight + margin.top + margin.bottom)
-            .append('g')
-            .attr('transform','translate(' + margin.left + ',' + margin.top + ')')
+        newSvg.attr('width', newWidth + newMargin.left + newMargin.right)
+            .attr('height', newHeight + newMargin.top + newMargin.bottom)
 
         let newXAxis = d3.scaleLinear()
-            .domain([0, highestValue]) 
-            .range([ 0, newWidth]);            
-            
+            .domain([0, 100]) 
+            .range([ 0, newWidth]);               
+                
         let newYAxis = d3.scaleBand()
                     .range([ 0, newHeight ])
-                    .domain(data.map(function(d) { return d.label; }))
-                    .padding(.1);
+                    .domain(data.map(function(d) { return d.group; }))
+                    .padding(.1);            
 
-        const newYAxisLine = d3.axisLeft(newYAxis).tickSize(0).tickFormat('');         
+        if (selectedStackedFilter === 'full') {
+            newBars.attr('x', d => newXAxis(d[0]) )
+                .attr('y', d => newYAxis(d.data.group))                          
+                .attr('width', d =>  newXAxis(d[1]) - newXAxis(d[0]) )
+                .attr('height', newYAxis.bandwidth() - newGapBetween );                    
+        } else {
+            newBars.attr('x', newXAxis(0) )
+                .attr('y', d => newYAxis(d['group']))                        
+                .attr('width', d =>  newXAxis(d[`${selectedStackedFilter}`]))
+                .attr('height', newYAxis.bandwidth() - newGapBetween );
+        }               
 
-        bars.attr('x', newXAxis(0) )
-            .attr('y', function(d) { return newYAxis(d.label); })                        
-            .attr('width', d => { return newXAxis(d.value); })
-            .attr('height', newYAxis.bandwidth() - gapBetween );
+        newD3Ref.select('.xaxis-tick-25')
+                .attr("x1", newXAxis(25))
+                .attr("y1", 0)
+                .attr("x2", newXAxis(25))
+                .attr("y2", newHeight); 
 
-        labels.attr('x', (d, i) => {
-                    return -10;
-                })
-                .attr('y', (d,i) => {
-                    return newYAxis(d.label) + (newYAxis.bandwidth() / 2);
-                })
+        newD3Ref.select('.xaxis-tick-50')
+                .attr("x1", newXAxis(50))
+                .attr("y1", 0)
+                .attr("x2", newXAxis(50))
+                .attr("y2", newHeight); 
+
+        newD3Ref.select('.xaxis-tick-75')
+                .attr("x1", newXAxis(75))
+                .attr("y1", 0)
+                .attr("x2", newXAxis(75))
+                .attr("y2", newHeight); 
+
+        newD3Ref.select('.xaxis-tick-100')
+                .attr("x1", newXAxis(100))
+                .attr("y1", 0)
+                .attr("x2", newXAxis(100))
+                .attr("y2", newHeight);  
+
+        newD3Ref.select('.xaxis-label-25')
+                .attr('x', newXAxis(25))
+                .attr('y', newHeight + 25) 
+
+        newD3Ref.select('.xaxis-label-50')
+                .attr('x', newXAxis(50))
+                .attr('y', newHeight + 25) 
         
-        values.attr('x', (d, i) => {
-                return newXAxis(d.value) + 10;
-            })
-            .attr('y', (d,i) => {
-                return newYAxis(d.label) + (newYAxis.bandwidth() / 2);
-            })
+        newD3Ref.select('.xaxis-label-75')
+                .attr('x', newXAxis(75))
+                .attr('y', newHeight + 25) 
 
-        yLine.call(newYAxisLine);
+        newD3Ref.select('.xaxis-label-100')
+                .attr('x', newXAxis(100))
+                .attr('y', newHeight + 25) 
 
+        // newSvg.append('line')  
+        //     .attr('class', 'xaxis-tick-100')
+        //     .attr('stroke', '#fff')
+        //     .attr('stroke-width', 2)
+        //     .attr("x1", newXAxis(100))
+        //     .attr("y1", 0)
+        //     .attr("x2", newXAxis(100))
+        //     .attr("y2", newHeight);
     }
         
     return { 

@@ -4,18 +4,27 @@ import thisData from '../assets/data/chart_data_sample_2.csv';
 import dataSample2 from '../assets/data/line_data_sample.csv';
 import scatterDataSample from '../assets/data/scatter_data_sample.csv';
 import stackedBarChartDataSample from '../assets/data/stacked_bar_chart_data_sample.csv';
+import donutChartDataSample from '../assets/data/donut_chart_data_sample.csv';
+import donutChartDataSample2 from '../assets/data/donut_chart_data_sample_2.csv';
 
 const HandleData = () => {
     const [chartData, setChartData] = useState([]),
           [lineData, setLineData] = useState([]),
           [scatterData, setScatterData] = useState([]),
-          [stackedBarChartData, setStackedBarChartData] = useState([]);
+          [stackedBarChartData, setStackedBarChartData] = useState([]),
+          [donutChartData, setDonutChartData] = useState([]);
     
+    // Scatter Plot Chart      
     const [labelList, setLabelList] = useState([]),
-          [stackedFilterList, setStackedFilterList] = useState([]);
+          [selectedLabel, setSelectedLabel] = useState([]);          
 
-    const [selectedLabel, setSelectedLabel] = useState([]),
-          [selectedStackedFilter, setSelectedStackedFilter] = useState('full');
+    // Stacked Horizontal Bar Chart      
+    const [stackedFilterList, setStackedFilterList] = useState([]),
+          [selectedStackedFilter, setSelectedStackedFilter] = useState('full');    
+    
+    // Donut Chart
+    const [selectedDonutFilter, setSelectedDonutFilter] = useState('country'),
+          [selectedDonutFilter2, setSelectedDonutFilter2] = useState('all');      
 
     const [deviceType, setDeviceType] = useState("");
 
@@ -80,21 +89,80 @@ const HandleData = () => {
             });          
     }, []) 
 
-    // handle filter selection on click of the filter
+    // get Donut Chart data sample
+    useEffect(() => {
+        d3.csv(donutChartDataSample)
+            .then(data => {    
+                setDonutChartData(data);                
+            });          
+    }, []) 
+
+    useEffect(() => {
+        let dataSample =  selectedDonutFilter === 'country' ? donutChartDataSample : donutChartDataSample2;
+        d3.csv(dataSample)
+            .then(data => {    
+                setDonutChartData(data); 
+                handleDonutFilter('all');  
+            })
+    }, [selectedDonutFilter])
+
+    // Scatter Plot Chart: handle filter selection on click of the filter
     const handleLabelSelect = (val) => {
         setSelectedLabel(selectedLabel => [...selectedLabel, val])
     } 
 
-    // handle stacked filter selection on click of the filter
+    // Stacked Horizontal Bar Chart: handle stacked filter selection on click of the filter
     const handleStackedFilterSelect = (val) => {
         setSelectedStackedFilter(val)
     } 
+
+    const handleDonutFilter = (val, isFirstFilter) => {
+        // isFirstFilter && setSelectedDonutFilter2('all');
+        isFirstFilter ? setSelectedDonutFilter(val) : setSelectedDonutFilter2(val);  
+    }
+
+    const textWrap = (text, width) => {
+        text.each(function () {
+            var text = d3.select(this),
+                words = text.text().split(/\s+/).reverse(),
+                word,
+                line = [],
+                lineNumber = 0,
+                lineHeight = 1.1, // ems
+                x = text.attr("x"),
+                y = text.attr("y"),
+                dy = 0, //parseFloat(text.attr("dy")),
+                tspan = text.text(null)
+                            .append("tspan")
+                            .attr("x", x)
+                            .attr("y", y)
+                            .attr("dy", dy + "em");
+            while (word = words.pop()) {
+                line.push(word);
+                tspan.text(line.join(" "));
+                if (tspan.node().getComputedTextLength() > width) {
+                    line.pop();
+                    tspan.text(line.join(" "));
+                    line = [word];
+                    tspan = text.append("tspan")
+                                .attr("x", x)
+                                .attr("y", y)
+                                .attr("dy", ++lineNumber * lineHeight + dy + "em")
+                                .text(word);
+                }
+            }
+        });
+    }
 
     return { 
             chartData,
             lineData,
             scatterData,
             stackedBarChartData,
+            donutChartData,
+            selectedDonutFilter,
+            selectedDonutFilter2,
+            handleDonutFilter,
             stackedFilterList,
             handleStackedFilterSelect,
             selectedStackedFilter,
@@ -103,6 +171,7 @@ const HandleData = () => {
             // selectedLabelData,
             selectedLabel,
             deviceType,
+            textWrap
         };
 }
 

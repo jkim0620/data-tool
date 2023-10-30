@@ -1,52 +1,20 @@
-import React, { useState, useContext, useEffect, useRef } from 'react';
+import React, { useContext } from 'react';
 import ToolContext from '../../hooks/ToolContext';
 import HandleData from '../../hooks/HandleData';
 
-const StackedBarFilter = (props) => {
-    const { listDirection } = props;
-
+const StackedBarFilter = () => {    
     const { handleStackedFilterSelect, selectedStackedFilter } = useContext(ToolContext);    
-    const { stackedFilterList, deviceType,  } = HandleData();
-    
-    const filterRef = useRef();
-    const [showFilterMenu, setShowFilterMenu] = useState(false);
-
-    useEffect(() => {
-        const checkIfClickedOutside = e => {
-          // If the menu is open and the clicked target is not within the menu,
-          // then close the menu
-            if (showFilterMenu && filterRef.current && !filterRef.current.contains(e.target)) {
-                setShowFilterMenu(false)
-            }
-        }
-    
-        document.addEventListener('mousedown', checkIfClickedOutside)
-    
-        return () => {
-          // Cleanup the event listener
-            document.removeEventListener('mousedown', checkIfClickedOutside)
-        }
-      }, [showFilterMenu])
-
-      useEffect(() => {
-        console.log('selected filter', selectedStackedFilter)
-      }, [selectedStackedFilter])
-
+    const { stackedFilterList } = HandleData();
 
     const FilterLists = (props) => {
         const { listId, list, color }= props;
-        return (<div onClick={ () => { handleStackedFilterSelect(listId); } } className={`label-filter__ul--list ${selectedStackedFilter === list && 'selected'} pointer font-text-bold white`} style={{padding: '7px 15px', border: `2px solid ${color}`, borderRadius: '20px', fontSize: '0.85rem', marginRight: '10px', backgroundColor: `${selectedStackedFilter === listId ? color : 'transparent'}`}}>{list}</div>)
-        // return (<li className={`label-filter__ul--list pointer font-text-bold gray`} style={{padding: '5px 3px'}}>{label}</li>)
-    }
-
-    const toggleFilter = () => {
-        setShowFilterMenu(!showFilterMenu);
+        return (<div onClick={ () => { handleStackedFilterSelect(listId); } } className={`label-filter__ul--list ${selectedStackedFilter === list && 'selected'} pointer font-text-bold white`} style={{padding: '7px 15px', border: `2px solid ${color}`, borderRadius: '20px', fontSize: '0.85rem', marginRight: '10px', marginBottom: '15px', backgroundColor: `${selectedStackedFilter === listId ? color : 'transparent'}`}}>{list}</div>)
     }
 
     const drawFilterMenu = stackedFilterList.map((el, index) => {
         let listName,
             color;
-            // .range(['#444','#e7045e','#ff9b00', '#00d885', '#00aef4'])
+
         switch(el) {
             case 'not_investing':
                 listName = 'Not Investing';
@@ -77,8 +45,8 @@ const StackedBarFilter = (props) => {
     });  
 
     return (
-        <div ref={filterRef} className="industry-filter pointer" style={{display: 'flex', alignItems: 'center'}} onClick={toggleFilter}>
-            <div style={{color: '#fff', fontWeight: 'bold', marginRight: '15px'}}>Sort By:</div>{drawFilterMenu}
+        <div className="industry-filter pointer" style={{display: 'flex', alignItems: 'center', flexWrap: 'wrap'}}>
+            <div style={{color: '#fff', fontWeight: 'bold', marginRight: '15px', marginBottom: '15px'}}>Sort By:</div>{drawFilterMenu}
         </div>
     )
 }

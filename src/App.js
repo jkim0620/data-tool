@@ -5,6 +5,7 @@ import BarChartV from './containers/BarChartV/BarChartV';
 import LineChart from './containers/LineChart/LineChart';
 import ScatterPlotChart from './containers/ScatterPlotChart/ScatterPlotChart';
 import StackedBarChartH from './containers/StackedBarChartH/StackedBarChartH';
+import DonutChart from './containers/DonutChart/DonutChart';
 import ToolContext from './hooks/ToolContext';
 import HandleData from './hooks/HandleData';
 
@@ -14,15 +15,27 @@ function App() {
 	const { selectedLabel, 
 			handleLabelSelect, 
 			handleStackedFilterSelect, 
-			selectedStackedFilter 
+			selectedStackedFilter,
+			donutChartData,
+			selectedDonutFilter,
+			selectedDonutFilter2,
+			handleDonutFilter 
 		  } = HandleData();
 
   	return (		
 		<div className="bg-black">
 			<ToolContext.Provider 
-				value={{ selectedLabel, handleLabelSelect, handleStackedFilterSelect, selectedStackedFilter }}
+				value={{ selectedLabel, 
+						handleLabelSelect, 
+						handleStackedFilterSelect, 
+						selectedStackedFilter,
+						donutChartData,
+						selectedDonutFilter, 
+						selectedDonutFilter2, 
+						handleDonutFilter }}
 			>	
-				<StackedBarChartH ref={toolRef} / >
+				<DonutChart ref={toolRef} / >
+				{/* <StackedBarChartH ref={toolRef} / > */}
 				{/* <ScatterPlotChart ref={toolRef} / > */}
 				{/* <BarChartV ref={toolRef} /> */}
 				{/* <BarChartH ref={toolRef} /> */}
