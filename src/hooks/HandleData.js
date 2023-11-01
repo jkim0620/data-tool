@@ -6,13 +6,15 @@ import scatterDataSample from '../assets/data/scatter_data_sample.csv';
 import stackedBarChartDataSample from '../assets/data/stacked_bar_chart_data_sample.csv';
 import donutChartDataSample from '../assets/data/donut_chart_data_sample.csv';
 import donutChartDataSample2 from '../assets/data/donut_chart_data_sample_2.csv';
+import dotPlotChartDataSample from '../assets/data/dot_plot_chart_data_sample.csv';
 
 const HandleData = () => {
     const [chartData, setChartData] = useState([]),
           [lineData, setLineData] = useState([]),
           [scatterData, setScatterData] = useState([]),
           [stackedBarChartData, setStackedBarChartData] = useState([]),
-          [donutChartData, setDonutChartData] = useState([]);
+          [donutChartData, setDonutChartData] = useState([]),
+          [dotPlotChartData, setDotPlotChartData] = useState([]);
     
     // Scatter Plot Chart      
     const [labelList, setLabelList] = useState([]),
@@ -79,7 +81,7 @@ const HandleData = () => {
     // get Stacked Bar Chart data sample
     useEffect(() => {
         d3.csv(stackedBarChartDataSample)
-            .then(data => {    
+            .then(data => {   
                 // get the column list create filter menu lists                
                 let filterList = data.columns.slice(1);  
                 filterList.unshift('full');              
@@ -91,12 +93,14 @@ const HandleData = () => {
 
     // get Donut Chart data sample
     useEffect(() => {
-        d3.csv(donutChartDataSample)
+        d3.csv(donutChartDataSample2)
             .then(data => {    
+                console.log(data)
                 setDonutChartData(data);                
             });          
     }, []) 
 
+    // reset Donut Chart data when filter selection has changed
     useEffect(() => {
         let dataSample =  selectedDonutFilter === 'country' ? donutChartDataSample : donutChartDataSample2;
         d3.csv(dataSample)
@@ -104,7 +108,15 @@ const HandleData = () => {
                 setDonutChartData(data); 
                 handleDonutFilter('all');  
             })
-    }, [selectedDonutFilter])
+    }, [selectedDonutFilter])    
+
+    // get Dot Plot Chart data sample
+    useEffect(() => {
+        d3.csv(dotPlotChartDataSample)
+            .then(data => {    
+                setDotPlotChartData(data);                
+            });          
+    }, []) 
 
     // Scatter Plot Chart: handle filter selection on click of the filter
     const handleLabelSelect = (val) => {
@@ -166,6 +178,7 @@ const HandleData = () => {
             stackedFilterList,
             handleStackedFilterSelect,
             selectedStackedFilter,
+            dotPlotChartData,
             labelList,
             handleLabelSelect,
             // selectedLabelData,

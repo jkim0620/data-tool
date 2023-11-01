@@ -57,6 +57,7 @@ const StackedBarChartHorizontalLogic = () => {
                         .attr('transform','translate(' + margin.left + ',' + margin.top + ')')
             
         let keys = data.columns.slice(1);  
+        console.log(keys)
         
         let stackedData = d3.stack()
                             .keys(keys)

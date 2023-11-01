@@ -48,7 +48,7 @@ const StackedBarChartHorizontal = () => {
                 </p>
             </div>   
 
-            <div ref={tooltipRef} className="chart__tooltip">
+            <div ref={tooltipRef} className="chart__tooltip" style={{backgroundColor: 'rgba(0,0,0,0.7)', color: '#fff'}}>
                 <div style={{marginBottom: '7px'}}>{tooltipDesc.label}</div>
                 <div className="">{tooltipDesc.value}%</div>
             </div>                            

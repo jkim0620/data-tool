@@ -6,6 +6,7 @@ import LineChart from './containers/LineChart/LineChart';
 import ScatterPlotChart from './containers/ScatterPlotChart/ScatterPlotChart';
 import StackedBarChartH from './containers/StackedBarChartH/StackedBarChartH';
 import DonutChart from './containers/DonutChart/DonutChart';
+import DotPlotChart from './containers/DotPlotChart/DotPlotChart';
 import ToolContext from './hooks/ToolContext';
 import HandleData from './hooks/HandleData';
 
@@ -19,7 +20,8 @@ function App() {
 			donutChartData,
 			selectedDonutFilter,
 			selectedDonutFilter2,
-			handleDonutFilter 
+			handleDonutFilter,
+			dotPlotChartData
 		  } = HandleData();
 
   	return (		
@@ -32,10 +34,12 @@ function App() {
 						donutChartData,
 						selectedDonutFilter, 
 						selectedDonutFilter2, 
-						handleDonutFilter }}
+						handleDonutFilter,
+						dotPlotChartData, }}
 			>	
+				<DotPlotChart ref={toolRef} />
 				{/* <DonutChart ref={toolRef} / > */}
-				<StackedBarChartH ref={toolRef} / >
+				{/* <StackedBarChartH ref={toolRef} / > */}
 				{/* <ScatterPlotChart ref={toolRef} / > */}
 				{/* <BarChartV ref={toolRef} /> */}
 				{/* <BarChartH ref={toolRef} /> */}
