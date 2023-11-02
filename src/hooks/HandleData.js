@@ -28,6 +28,11 @@ const HandleData = () => {
     const [selectedDonutFilter, setSelectedDonutFilter] = useState('country'),
           [selectedDonutFilter2, setSelectedDonutFilter2] = useState('all');      
 
+    // Dot Chart
+    const [dotPlotFilterList, setDotPlotFilterList] = useState([]),
+          [selectedDotPlotFilter, setSelectedDotPlotFilter] = useState('full'),
+          [selectedDotPlotFilter2, setSelectedDotPlotFilter2] = useState('full');      
+
     const [deviceType, setDeviceType] = useState("");
 
     useEffect(() => {
@@ -95,7 +100,6 @@ const HandleData = () => {
     useEffect(() => {
         d3.csv(donutChartDataSample2)
             .then(data => {    
-                console.log(data)
                 setDonutChartData(data);                
             });          
     }, []) 
@@ -113,7 +117,14 @@ const HandleData = () => {
     // get Dot Plot Chart data sample
     useEffect(() => {
         d3.csv(dotPlotChartDataSample)
-            .then(data => {    
+            .then(data => {   
+                // get the list of industry to create filter menu lists
+                const labelArr = data.map(d => {
+                    return d.group;
+                });                
+               
+                let filterLabels = Array.from(new Set(labelArr));
+                setDotPlotFilterList(filterLabels);
                 setDotPlotChartData(data);                
             });          
     }, []) 
@@ -131,6 +142,10 @@ const HandleData = () => {
     const handleDonutFilter = (val, isFirstFilter) => {
         // isFirstFilter && setSelectedDonutFilter2('all');
         isFirstFilter ? setSelectedDonutFilter(val) : setSelectedDonutFilter2(val);  
+    }
+
+    const handleDotPlotFilter = (val, isFirstFilter) => {
+        isFirstFilter ? setSelectedDotPlotFilter(val) : setSelectedDotPlotFilter2(val);  
     }
 
     const textWrap = (text, width) => {
@@ -179,6 +194,10 @@ const HandleData = () => {
             handleStackedFilterSelect,
             selectedStackedFilter,
             dotPlotChartData,
+            handleDotPlotFilter,
+            selectedDotPlotFilter,
+            selectedDotPlotFilter2,
+            dotPlotFilterList,
             labelList,
             handleLabelSelect,
             // selectedLabelData,

@@ -9,6 +9,12 @@ const DotPlotChartLogic = () => {
     const { deviceType, textWrap } = HandleData();
     const { selectedDonutFilter, selectedDonutFilter2 } = useContext(ToolContext);    
 
+    const colors = [{color: 'magenta', hex: '#e7045e', 'label': '100% Analog' }, 
+                    {color: 'yolk', hex: '#ff9b00', 'label': 'Functional Silos'}, 
+                    {color: 'white', hex: '#fff', 'label': 'Early Roadmap with Pilots'}, 
+                    {color: 'sky', hex: '#00aef4', 'label': 'Full Roadmap'},  
+                    {color: 'emerald', hex: '#00d885', 'label': '100% Digital'}];
+
     const updateDonutChart = (data, refEl) => {
         //Remove labels
         d3.select(refEl.current).selectAll('.hidden-donut-arcs').remove();
@@ -168,44 +174,12 @@ const DotPlotChartLogic = () => {
                         .attr('height', height + margin.top + margin.bottom)
                         .attr('class', 'svg')                        
                         .append('g')
-                        .attr('transform','translate(' + margin.left + ',' + margin.top + ')')        
-
-        const colors = [{color: 'magenta', hex: '#e7045e'}, {color: 'yolk', hex: '#ff9b00'}, {color: 'white', hex: '#fff'}, {color: 'sky', hex: '#00aef4'},  {color: 'emerald', hex: '#00d885'}]
+                        .attr('transform','translate(' + margin.left + ',' + margin.top + ')')               
 
         // Add X axis
         const xAxis = d3.scaleLinear()
                         .domain([0, 100])
-                        .range([ 0, width]);
-                        svg.append('g')
-                        .attr('transform', 'translate(0,' + 30 + ')')
-                        .call(d3.axisTop(xAxis))
-                        .selectAll('text')
-                        .attr('fill', '#fff')
-                        .attr('y', 0)
-                        .attr('x', 0)
-                        .attr('font-size', '0.8rem')
-                        .style('text-anchor', d => { 
-                            if (d === 0) {
-                                return 'start';
-                            } else if (d === 50) {
-                                return 'middle';
-                            } else if (d === 100) {
-                                return 'end';
-                            } else {
-                                return null;
-                            }                        
-                        })
-                        .text(d => {                         
-                            if (d === 0) {
-                                return 'Piloting';
-                            } else if (d === 50) {
-                                return 'Scaling';
-                            } else if (d === 100) {
-                                return 'Fully Deployed';
-                            } else {
-                                return null;
-                            }
-                         })
+                        .range([ 0, width]);                    
 
         // Y axis
         const yAxis = d3.scaleBand()
@@ -222,18 +196,47 @@ const DotPlotChartLogic = () => {
                         .style('text-anchor', 'end')
                         .call(textWrap, margin.left - 15); 
 
-        // Lines
-        const dotPlotLines = svg.selectAll('.dot-plot-line')
-                                .data(data)
-                                .enter()
-                                .append('line')
-                                .attr('x1', function(d) { return xAxis(0); })
-                                .attr('x2', function(d) { return xAxis(100); })
-                                .attr('y1', function(d) { return yAxis(d.group); })
-                                .attr('y2', function(d) { return yAxis(d.group); })
-                                .attr('class', 'dot-plot-line')
-                                .attr('stroke', 'grey')
-                                .attr('stroke-width', '1px');
+        // Append Lines
+        svg.selectAll('.dot-plot-line')
+            .data(data)
+            .enter()
+            .append('line')
+            .attr('x1', function(d) { return xAxis(0); })
+            .attr('x2', function(d) { return xAxis(100); })
+            .attr('y1', function(d) { return yAxis(d.group); })
+            .attr('y2', function(d) { return yAxis(d.group); })
+            .attr('class', 'dot-plot-line')
+            .attr('stroke', 'grey')
+            .attr('stroke-width', '1px');
+
+        // Append x axis tick label
+        svg.append('text')
+            .attr('class', 'tick-x-label-0')
+            .attr('x', xAxis(0))
+            .attr('y', 30)
+            .attr('fill', '#fff')
+            .attr('font-size', '0.8rem')
+            .style('text-anchor', 'start')
+            .text('Piloting')
+
+        svg.append('text')
+            .attr('class', 'tick-x-label-50')
+            .attr('x', xAxis(50))
+            .attr('y', 30)
+            .attr('fill', '#fff')
+            .attr('font-size', '0.8rem')
+            .style('text-anchor', 'middle')
+            .text('Scaling')
+
+        svg.append('text')
+            .attr('class', 'tick-x-label-100')
+            .attr('x', xAxis(100))
+            .attr('y', 30)
+            .attr('fill', '#fff')
+            .attr('font-size', '0.8rem')
+            .style('text-anchor', 'end')
+            .text('Fully Deployed')
+
         
         // Append tick line for 0%
         svg.selectAll('.tick-line-0')
@@ -242,7 +245,7 @@ const DotPlotChartLogic = () => {
             .append('line')
             .attr('class', 'tick-line-0')
             .attr('x1', xAxis(0))
-            .attr('x2', d =>  xAxis(0) )
+            .attr('x2', xAxis(0) )
             .attr('y1', d => yAxis(d.group) - 10 )
             .attr('y2', d =>  yAxis(d.group) + 10 )
             .style('stroke', '#888');
@@ -254,7 +257,7 @@ const DotPlotChartLogic = () => {
             .append('line')
             .attr('class', 'tick-line-50')
             .attr('x1', xAxis(50))
-            .attr('x2', d =>  xAxis(50) )
+            .attr('x2', xAxis(50) )
             .attr('y1', d => yAxis(d.group) - 10 )
             .attr('y2', d =>  yAxis(d.group) + 10 )
             .style('stroke', '#888');
@@ -266,7 +269,7 @@ const DotPlotChartLogic = () => {
             .append('line')
             .attr('class', 'tick-line-100')
             .attr('x1', xAxis(100))
-            .attr('x2', d =>  xAxis(100) )
+            .attr('x2', xAxis(100) )
             .attr('y1', d => yAxis(d.group) - 10 )
             .attr('y2', d =>  yAxis(d.group) + 10 )
             .style('stroke', '#888');    
@@ -277,14 +280,14 @@ const DotPlotChartLogic = () => {
                 .data(data)
                 .enter()
                 .append('circle')
-                .attr('class', `dot dot_${el.color}`)
+                .attr('class', `dot dot_${el.color} ${el.color}`)
                 .attr('cy', function(d) { return yAxis(d.group); })
                 .transition()
                 .duration(700)    
                 .delay( (d, i) => {
                     return i * 100
                 })                     
-                .attr('cx', function(d) { return xAxis(d[`value_${el.color}`] - 10); })
+                .attr('cx', function(d) { return xAxis(d[`value_${el.color}`]); })
                 .attr('r', 7)
                 .style('fill', el.hex);                         
         });  
@@ -299,16 +302,15 @@ const DotPlotChartLogic = () => {
                 .append('circle')
                 .attr('class', `dot_emph`)
                 .attr('cy', function(d) { return yAxis(d.group); })              
-                .attr('cx', function(d) { return xAxis(d[`value_emerald`] - 10); })
+                .attr('cx', function(d) { return xAxis(d[`value_emerald`]); })
                 .style('fill', 'none')
                 .transition()
                 .duration(400)
                 .attr('stroke', d => {
-                    console.log(d.value_emerald > 85)
                     return parseInt(d.value_emerald) > 85 ? '#00d885' : 'transparent';
                 })   
-                .attr('r', 12)
-                .attr('stroke-width', '2px')
+                .attr('r', 13)
+                .attr('stroke-width', '1px')
 
                 dots.on('mouseover', mouseOverDot)
             .on('mouseout', mouseOutDot)
@@ -320,9 +322,12 @@ const DotPlotChartLogic = () => {
             d3Tooltip.style('visibility', 'visible')
                     .style('top', `${event.clientY + 20}px`)
                     .style('left', `${event.clientX - 50}px`);
-            
+                    
+            colors.forEach(el => {
+                return d3.select(this).classed(`${el.color}`) && setTooltipDesc({label: el.label, value: targetData[`value_${el.color}`]  });
+            })
             dots.transition().duration(200)
-                .attr('opacity', 0.5);   
+                .attr('opacity', 0.7);   
 
             d3.select(this).transition()
                 .duration(200)
@@ -345,68 +350,58 @@ const DotPlotChartLogic = () => {
     }  
 
     const handleResize = (refEl, data) => {
-        let paths = d3.select(refEl.current).selectAll('.donut-path'),
-            polylines = d3.select(refEl.current).selectAll('.polyline'),
-            polylineLabels = d3.select(refEl.current).selectAll('.polyline-label');
         
-        const containerWidth = refEl.current.clientWidth;
-
-        const marginValue = containerWidth > 400 ? 60 : 40;
-
-        const margin = {left: marginValue, right: marginValue, top: marginValue, bottom: marginValue},
-        newWidth = refEl.current.clientWidth - margin.left - margin.right,              
-        newHeight = refEl.current.clientWidth - margin.top - margin.bottom,
-        thickness = newWidth > 500 ? 120 : 80;
+        const margin = {left: 150, right: 30, top: 10, bottom: 10},
+        newWidth = refEl.current.clientWidth - margin.left - margin.right;
         
         const newD3Ref = d3.select(refEl.current),
-            newSvg = newD3Ref.select('.svg');
+        newSvg = newD3Ref.select('.svg');
+        
+        newSvg.attr('width', newWidth + margin.left + margin.right);               
 
-        const newRadius = Math.min(newWidth, newHeight) / 1.8 - margin.left,
-            newArc = d3.arc()
-                        .innerRadius(newRadius - thickness)
-                        .outerRadius(newRadius),
-            newOuterArc = d3.arc()
-                            .innerRadius(newRadius * 0.9)
-                            .outerRadius(newRadius * 0.9);
+        // Add X axis
+        const newXAxis = d3.scaleLinear()
+                        .domain([0, 100])
+                        .range([ 0, newWidth]); 
 
-        newSvg.attr('width', newWidth + margin.left + margin.right)
-            .attr('height', newHeight + margin.top + margin.bottom)  
-            
-        newSvg.select('g')  
-            .attr('transform','translate(' + (newWidth / 2 + margin.left) + ',' + (newHeight / 2 + margin.top ) + ')')  
-
-        paths.attr('d', newArc)
-            .each((d, i) => {
-                var firstArcSection = /(^.+?)L/;
+        newSvg.selectAll('.tick-x-label-0')
+                .attr('x', newXAxis(0))
                 
-                var diffArc = firstArcSection.exec( newArc(d) )[1];
-                diffArc = diffArc.replace(/,/g , " ");
+        newSvg.selectAll('.tick-x-label-50')
+                .attr('x', newXAxis(50))
+                
+        newSvg.selectAll('.tick-x-label-100')
+                .attr('x', newXAxis(100))
 
-                newSvg.select(`#donutPath${i + 1}`)
-                    .attr('d', diffArc)
-            });
+        newSvg.selectAll('.tick-line-0')
+            .attr('x1', newXAxis(0))
+            .attr('x2', newXAxis(0) )
 
-        polylines.attr('points', function(d) {
-                    var posA = newArc.centroid(d) // line insertion in the slice
-                    var posB = newOuterArc.centroid(d) // line break: we use the other arc generator that has been built only for that
-                    var posC = newOuterArc.centroid(d); // Label position = almost the same as posB
-                    var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2 // we need the angle to see if the X position will be at the extreme right or extreme left
-                    posC[0] = newRadius * 0.95 * (midangle < Math.PI ? 1 : -1); // multiply by 1 or -1 to put it on the right or on the left
-                    return [posA, posB, posC]
-                });
+        newSvg.selectAll('.tick-line-50')
+            .attr('x1', newXAxis(50))
+            .attr('x2', newXAxis(50) )
 
-        polylineLabels.attr('transform', function(d) {
-                            let pos = newOuterArc.centroid(d);
-                            let midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
-                            pos[0] = newRadius * 0.99 * (midangle < Math.PI ? 1 : -1);
-                            
-                            if (newWidth > 550) {
-                                return d.data[`${selectedDonutFilter2}_value`] <= 4 && 'translate(' + pos + ')';
-                            } else {
+        newSvg.selectAll('.tick-line-100')
+            .attr('x1', newXAxis(100))
+            .attr('x2', newXAxis(100) )        
 
-                                return d.data[`${selectedDonutFilter2}_value`] <= 6 && 'translate(' + pos + ')';
-                            }
-                         })     
+        // re-arrange lines
+        newSvg.selectAll('.dot-plot-line')
+                .attr('x1', function(d) { return newXAxis(0); })
+                .attr('x2', function(d) { return newXAxis(100); })
+        
+        // re-arrange dots        
+        colors.forEach(el => {
+            newSvg.selectAll(`.dot_${el.color}`)        
+                .attr('cx', d => { return newXAxis(d[`value_${el.color}`] - 10); })        
+        })        
+
+        // re-arragne emphasis dots
+        newSvg.selectAll(`.dot_emph`)        
+                .attr('cx', d => { return newXAxis(d[`value_emerald`] - 10); })        
+
+
+        
     }
         
     return { 

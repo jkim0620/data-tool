@@ -21,7 +21,11 @@ function App() {
 			selectedDonutFilter,
 			selectedDonutFilter2,
 			handleDonutFilter,
-			dotPlotChartData
+			dotPlotChartData,
+			handleDotPlotFilter,
+            selectedDotPlotFilter,
+            selectedDotPlotFilter2,
+			dotPlotFilterList,
 		  } = HandleData();
 
   	return (		
@@ -35,7 +39,11 @@ function App() {
 						selectedDonutFilter, 
 						selectedDonutFilter2, 
 						handleDonutFilter,
-						dotPlotChartData, }}
+						dotPlotChartData,
+						handleDotPlotFilter,
+						selectedDotPlotFilter,
+						selectedDotPlotFilter2,
+						dotPlotFilterList, }}
 			>	
 				<DotPlotChart ref={toolRef} />
 				{/* <DonutChart ref={toolRef} / > */}
